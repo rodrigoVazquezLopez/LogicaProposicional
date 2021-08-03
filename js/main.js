@@ -96,9 +96,9 @@ function btnZ() {
 function btnOpNeg() {
     const entrada = document.getElementById('entrada');
     if (entrada.textContent == '0') {
-        entrada.textContent = '¬';
+        entrada.textContent = '\u2310';
     } else {
-        entrada.textContent = entrada.textContent + "¬";
+        entrada.textContent = entrada.textContent + "\u2310";
     }
 };
 
@@ -152,7 +152,11 @@ function btnOpDisyExc() {
 function btnFunDEL() {
     const entrada = document.getElementById('entrada');
     if (entrada.textContent != '0') {
-        entrada.textContent = entrada.textContent.slice(0, entrada.textContent.length - 1);
+        if (entrada.textContent.length == 1) {
+            entrada.textContent = '0';
+        } else {
+            entrada.textContent = entrada.textContent.slice(0, entrada.textContent.length - 1);
+        }
     }
 };
 
