@@ -165,3 +165,14 @@ function btnFunAC() {
     entrada.textContent = '0';
 }
 
+function btnFunRES() {
+    const entrada = document.getElementById('entrada');
+    a = tokenizer(entrada.textContent);
+    let index = 0;
+    while (index < a.length) {
+        alert(a[index].token + " " + a[index].type);
+        index++;
+    }
+    alert(a);
+}
+
