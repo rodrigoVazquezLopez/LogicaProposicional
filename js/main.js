@@ -147,6 +147,24 @@ function btnOpDisyExc() {
     }
 };
 
+function btnOpLeftPar() {
+    const entrada = document.getElementById('entrada');
+    if (entrada.textContent == '0') {
+        entrada.textContent = '(';
+    } else {
+        entrada.textContent = entrada.textContent + "(";
+    }
+};
+
+function btnOpRightPar() {
+    const entrada = document.getElementById('entrada');
+    if (entrada.textContent == '0') {
+        entrada.textContent = ')';
+    } else {
+        entrada.textContent = entrada.textContent + ")";
+    }
+};
+
 // funciones 
 
 function btnFunDEL() {
