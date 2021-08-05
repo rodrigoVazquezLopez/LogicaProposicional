@@ -13,7 +13,7 @@ function isProposition(char) {
 }
 
 function isNegation(char) {
-    if (char == '\u2310') {
+    if (char == charOpNeg) {
         return true;
     }
     return false;
@@ -21,11 +21,11 @@ function isNegation(char) {
 
 function isBinaryOperator(char) {
     switch (char) {
-        case '\u2228':
-        case '\u2227':
-        case '\u2B62':
-        case '\u2B64':
-        case '\u2295':
+        case charOpConj:
+        case charOpDisy:
+        case charOpImp:
+        case charOpBicond:
+        case charOpDisyExc:
             return true;
     }
     return false;
@@ -46,27 +46,20 @@ function tokenizer(str) {
         char = str.charAt(pos);
         if (isProposition(char)) {
             type = "PREP";
-        } else {
-            if (isNegation(char)) {
-                type = "NEG";
+        } else if (isNegation(char)) {
+            type = "NEG";
+        } else if (isBinaryOperator(char)) {
+            type = "OPER";
+        } else if (isParenthesis(char)) {
+            if (char == '(') {
+                type = "LEFTPAR";
             } else {
-                if (isBinaryOperator(char)) {
-                    type = "OPER";
-                } else {
-                    if (isParenthesis(char)) {
-                        if (char == '(') {
-                            type = "LEFTPAR";
-                        } else {
-                            type = "RIGHTPAR";
-                        }
-                    } else {
-                        type = "ERR";
-                    }
-                }
+                type = "RIGHTPAR";
             }
+        } else {
+            type = "ERR";
         }
         let t = new Token(char, type);
-        alert(t.token + t.type);
         tokens.push(t);
         pos++;
     }
