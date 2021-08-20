@@ -53,41 +53,33 @@ function btnF() {
 };
 
 
-function btnW() {
+function btnG() {
     const entrada = document.getElementById('entrada');
     if (entrada.textContent == '0') {
-        entrada.textContent = 'W';
+        entrada.textContent = 'G';
     } else {
         entrada.textContent = entrada.textContent + "W";
     }
 };
 
-function btnX() {
+function btnH() {
     const entrada = document.getElementById('entrada');
     if (entrada.textContent == '0') {
-        entrada.textContent = 'X';
+        entrada.textContent = 'H';
     } else {
         entrada.textContent = entrada.textContent + "X";
     }
 };
 
-function btnY() {
+function btnI() {
     const entrada = document.getElementById('entrada');
     if (entrada.textContent == '0') {
-        entrada.textContent = 'Y';
+        entrada.textContent = 'I';
     } else {
         entrada.textContent = entrada.textContent + "Y";
     }
 };
 
-function btnZ() {
-    const entrada = document.getElementById('entrada');
-    if (entrada.textContent == '0') {
-        entrada.textContent = 'Z';
-    } else {
-        entrada.textContent = entrada.textContent + "Z";
-    }
-};
 
 // funciones de botones de operaciones
 

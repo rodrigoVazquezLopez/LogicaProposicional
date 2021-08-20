@@ -3,6 +3,8 @@ function main() {
     a = tokenizer(entrada.textContent);
     b = shuntingYard(a);
     let index = 0;
+    
+    
     while (index < a.length) {
         alert(a[index].token + " " + a[index].type);
         index++;
