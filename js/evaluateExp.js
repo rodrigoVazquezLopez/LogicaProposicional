@@ -39,5 +39,13 @@ function generateInputTable(numOfPrepositions) {
 
 function getInputLabels(tokens) {
     let labels = [];
-    
+    let index = 0;
+    while (index < tokens.length) {
+        let token = tokens[index];
+        if (token.type == "PREP") {
+            labels.push(token.token)
+        }
+    }
+    labels.sort()
+    return labels;
 }
