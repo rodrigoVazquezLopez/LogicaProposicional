@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Prueba</title>
-        <script src="js/constants.js"></script>
-        <script src="js/tokenizer.js"></script>
-        <script src="js/stack.js"></script>
-        <script src="js/shuntingYard.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/view.js"></script>
-    </head>
-    <body>
-        <div>
-            <div id="entrada">0</div>
-            <button onclick="btnFunDEL()">DEL</button>
-            <button onclick="btnFunAC()">AC</button>
-            <button onclick="main()">RES</button>
-        </div>
-        <div>
-            <button onclick="btnA()">A</button>
-            <button onclick="btnB()">B</button>
-            <button onclick="btnC()">C</button>
-            <button onclick="btnD()">D</button>
-            <button onclick="btnE()">E</button>
-            <button onclick="btnF()">F</button>
-            <button onclick="btnG()">G</button>
-            <button onclick="btnH()">H</button>
-            <button onclick="btnI()">I</button>
-        </div>
-        <div>
-            <button onclick="btnOpNeg()">Neg</button>
-            <button onclick="btnOpDisy()">Disy</button>
-            <button onclick="btnOpConj()">Conj</button>
-            <button onclick="btnOpImp()">Imp</button>
-            <button onclick="btnOpBicond()">bicond</button>
-            <button onclick="btnOpDisyExc()">disyExc</button>
-            <button onclick="btnOpLeftPar()">(</button>
-            <button onclick="btnOpRightPar()">)</button>
-        </div>
-    </body>
-</html>
+  <head>
+    <title>Prueba</title>
+    <script src="js/constants.js"></script>
+    <script src="js/tokenizer.js"></script>
+    <script src="js/stack.js"></script>
+    <script src="js/shuntingYard.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/view.js"></script>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
 
+  <body>
+    <div class="flex-container" style="width: 100%">
+      <div class="flex-container calculator">
+        <div class="input-expression" id="entrada">0</div>
+
+        <button class="btn-calculator" onclick="btnOpLeftPar()">(</button>
+        <button class="btn-calculator" onclick="btnOpRightPar()">)</button>
+        <button class="btn-calculator btn-delete-color" onclick="btnFunDEL()">DEL</button>
+        <button class="btn-calculator btn-delete-color" onclick="btnFunAC()">AC</button>
+
+        <button class="btn-calculator" onclick="btnOpNeg()">&#x00AC;</button>
+        <button class="btn-calculator" onclick="btnOpImp()">&#x2B62;</button>
+        <button class="btn-calculator" onclick="btnOpBicond()">&#x2B64;</button>
+        <button class="btn-calculator" onclick="btnOpDisyExc()">&#x2295;</button>
+
+        <button class="btn-calculator btn-preposition-color" onclick="btnA()">A</button>
+        <button class="btn-calculator btn-preposition-color" onclick="btnB()">B</button>
+        <button class="btn-calculator btn-preposition-color" onclick="btnC()">C</button>
+        <button class="btn-calculator" onclick="btnOpConj()">&#x2227;</button>
+
+        <button class="btn-calculator btn-preposition-color" onclick="btnD()">D</button>
+        <button class="btn-calculator btn-preposition-color" onclick="btnE()">E</button>
+        <button class="btn-calculator btn-preposition-color" onclick="btnF()">F</button>
+        <button class="btn-calculator" onclick="btnOpDisy()">&#x2228;</button>
+
+        <button class="btn-calculator btn-preposition-color" onclick="btnG()">G</button>
+        <button class="btn-calculator btn-preposition-color" onclick="btnH()">H</button>
+        <button class="btn-calculator btn-preposition-color" onclick="btnI()">I</button>
+        <button class="btn-calculator btn-equal-color" onclick="main()">RES</button>
+      </div>
+
+      <div style="width: 59%">aqui van los resultados</div>
+    </div>
+
+    <div></div>
+    <div></div>
+  </body>
+</html>
