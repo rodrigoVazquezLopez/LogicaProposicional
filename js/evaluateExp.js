@@ -30,10 +30,11 @@ function generateInputTable(numOfPrepositions) {
   let numOfColumns = max.toString(2).length;
   let index = 0;
   while (index <= max) {
-    let x = max.toString(2);
+    let x = index.toString(2);
     table.push(x.padStart(numOfColumns, 0));
     index++;
   }
+  console.log(table);
   return table;
 }
 
@@ -45,6 +46,7 @@ function getInputLabels(tokens) {
     if (token.type == "PREP") {
       labels.push(token.token);
     }
+    index++;
   }
   labels.sort();
   return labels;
@@ -96,4 +98,13 @@ function exclusiveDisjunction(propA, propB) {
   } else {
     return "1";
   }
+}
+
+function evaluateExpression(posfix){
+    let numPrepositions = getNumberOfPrepositions(posfix);
+    let numOperations = getNumberOfOperations(posfix);
+    inputTable = generateInputTable(numPrepositions);
+    inputLabels = getInputLabels(posfix);
+    console.log(inputLabels);
+    return inputTable;
 }

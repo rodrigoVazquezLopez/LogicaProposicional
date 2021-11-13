@@ -15,4 +15,12 @@ function main() {
     index++;
   }
   alert(c);
+  res = evaluateExpression(b);
+  index = 0;
+  salida = '';
+  while (index < res.length) {
+    salida = salida + res[index] + '<br>';
+    index++;
+  }
+  document.getElementById("salida").innerHTML = salida;
 }

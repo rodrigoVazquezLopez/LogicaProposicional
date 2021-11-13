@@ -57,7 +57,7 @@ function btnG() {
   if (entrada.textContent == "0") {
     entrada.textContent = "G";
   } else {
-    entrada.textContent = entrada.textContent + "W";
+    entrada.textContent = entrada.textContent + "G";
   }
 }
 
@@ -66,7 +66,7 @@ function btnH() {
   if (entrada.textContent == "0") {
     entrada.textContent = "H";
   } else {
-    entrada.textContent = entrada.textContent + "X";
+    entrada.textContent = entrada.textContent + "H";
   }
 }
 
@@ -75,7 +75,7 @@ function btnI() {
   if (entrada.textContent == "0") {
     entrada.textContent = "I";
   } else {
-    entrada.textContent = entrada.textContent + "Y";
+    entrada.textContent = entrada.textContent + "I";
   }
 }
 

@@ -6,6 +6,7 @@
     <script src="js/tokenizer.js"></script>
     <script src="js/stack.js"></script>
     <script src="js/shuntingYard.js"></script>
+    <script src="js/evaluateExp.js"></script>
     <script src="js/main.js"></script>
     <script src="js/view.js"></script>
     <link rel="stylesheet" href="./css/styles.css" />
@@ -22,8 +23,8 @@
         <button class="btn-calculator btn-delete-color" onclick="btnFunAC()">AC</button>
 
         <button class="btn-calculator" onclick="btnOpNeg()">&#x00AC;</button>
-        <button class="btn-calculator" onclick="btnOpImp()">&#x2B62;</button>
-        <button class="btn-calculator" onclick="btnOpBicond()">&#x2B64;</button>
+        <button class="btn-calculator" onclick="btnOpImp()">&#x2192;</button>
+        <button class="btn-calculator" onclick="btnOpBicond()">&#x2194;</button>
         <button class="btn-calculator" onclick="btnOpDisyExc()">&#x2295;</button>
 
         <button class="btn-calculator btn-preposition-color" onclick="btnA()">A</button>
@@ -42,7 +43,7 @@
         <button class="btn-calculator btn-equal-color" onclick="main()">RES</button>
       </div>
 
-      <div style="width: 59%">aqui van los resultados</div>
+      <div style="width: 59%" id="salida">aqui van los resultados</div>
     </div>
 
     <div></div>
