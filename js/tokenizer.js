@@ -1,4 +1,12 @@
+/**
+ * Class representing a Token
+ */
 class Token {
+  /**
+   * constructor
+   * @param {string} token - a character
+   * @param {string} type - type of token: PREP, NEG, OPER, LEFTPAR, RIGHTPAR, ERR, PARTIALRES
+   */
   constructor(token, type) {
     this.token = token;
     this.type = type;
@@ -6,9 +14,9 @@ class Token {
 }
 
 /**
- * 
- * @param {*} char 
- * @returns 
+ * Check if a character represents a proposition (Letter A-I).
+ * @param {string} char - a character
+ * @returns {boolean} true if is a character between A-I, false if not.
  */
 function isProposition(char) {
   if (char.charCodeAt(0) > 64 && char.charCodeAt(0) < 91) {
@@ -17,6 +25,11 @@ function isProposition(char) {
   return false;
 }
 
+/**
+ * Check if a character is negation operation symbol
+ * @param {string} char - a character
+ * @returns {boolean} true if is negation symbol, false if not.
+ */
 function isNegation(char) {
   if (char == charOpNeg) {
     return true;
@@ -24,6 +37,11 @@ function isNegation(char) {
   return false;
 }
 
+/**
+ * Check if a character represents a valid binary operation
+ * @param {string} char - a character
+ * @returns {boolean} true if is a valid binary logic operator, false if not.
+ */
 function isBinaryOperator(char) {
   switch (char) {
     case charOpConj:
@@ -36,6 +54,11 @@ function isBinaryOperator(char) {
   return false;
 }
 
+/**
+ * Check if a character is right or left parethesis
+ * @param {string} char - a character
+ * @returns {boolean} true if is a parenthesis, false if not.
+ */
 function isParenthesis(char) {
   if (char == "(" || char == ")") {
     return true;
@@ -43,6 +66,11 @@ function isParenthesis(char) {
   return false;
 }
 
+/**
+ * create an array of tokens from a 
+ * @param {string} str - an input string to tokenize
+ * @returns {Array} array of Token objects
+ */
 function tokenizer(str) {
   let tokens = [];
   let pos = 0;

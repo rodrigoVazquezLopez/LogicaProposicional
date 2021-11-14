@@ -44,3 +44,30 @@
 .btn-delete-color{
     background-color: #D6C1D6;
 }
+
+.card-token-element {
+  width: 90px;
+  text-align: center;
+  margin: 1px;
+}
+
+.token-data {
+  margin: 0;
+  font-size: 2rem;
+  padding: 0.625rem;
+  border: 2px solid rgb(96, 154, 161);
+  border-radius: 10px 10px 0 0;
+}
+
+.token-type-data {
+  margin: 0;  
+  padding: 0.3125rem 0;
+  background-color: rgb(96, 154, 161);
+  color: #fff;
+  border-radius: 0 0 10px 10px;
+  font-weight: 200;
+}
+
+table, th, td {
+  border: 1px solid black;
+}

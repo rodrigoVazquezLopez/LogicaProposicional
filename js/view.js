@@ -161,10 +161,7 @@ function btnFunDEL() {
     if (entrada.textContent.length == 1) {
       entrada.textContent = "0";
     } else {
-      entrada.textContent = entrada.textContent.slice(
-        0,
-        entrada.textContent.length - 1
-      );
+      entrada.textContent = entrada.textContent.slice(0, entrada.textContent.length - 1);
     }
   }
 }

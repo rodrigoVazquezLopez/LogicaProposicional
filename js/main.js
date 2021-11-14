@@ -1,26 +1,56 @@
 function main() {
   const entrada = document.getElementById("entrada");
   a = tokenizer(entrada.textContent);
-  b = shuntingYard(a);
-  let index = 0;
+  
+  let textA = '<div class="card-token-element"><p class="token-data">';
+  let textB = '</p><p class="token-type-data">';
+  let textC = '</p></div>';
+  let completo = "";
+  for(let i = 0; i<a.length; i++) {
+    completo = completo + textA + a[i].token + textB + a[i].type + textC;
+  }
+  document.getElementById("tokenizer").innerHTML = completo;
 
-  while (index < a.length) {
-    alert(a[index].token + " " + a[index].type);
-    index++;
+  b = shuntingYard(a);
+
+  let txtShunting = "";
+  for(let i=0;i<b.length; i++) {
+    txtShunting = txtShunting + b[i].token;
   }
-  let c = "";
-  index = 0;
-  while (index < b.length) {
-    c = c + b[index].token;
-    index++;
-  }
-  alert(c);
+  document.getElementById("shunting").innerHTML = txtShunting;
+
+  
   res = evaluateExpression(b);
-  index = 0;
-  salida = '';
-  while (index < res.length) {
-    salida = salida + res[index] + '<br>';
-    index++;
+  let inputLabels = res[0];
+  let outputLabels = res[1];
+  let inputTable = res[2];
+  let outputTable = res[3];
+
+  headers = '';
+  for(let i =0; i < inputLabels.length; i++) {
+    headers = headers + "<th>" + inputLabels[i] + "</th>";
   }
-  document.getElementById("salida").innerHTML = salida;
+  content = "";
+  for(let i = 0; i<inputTable.length; i++) {
+    content = content + "<tr>";
+    for(let j=0; j<inputTable[i].length;j++) {
+      content = content + "<td>" + inputTable[i][j] + "</td>";
+    }
+    content = content + "</tr>";
+  }
+  document.getElementById("inputs").innerHTML = headers + content;
+
+  headers = '';
+  for(let i =0; i < outputLabels.length; i++) {
+    headers = headers + "<th>" + outputLabels[i] + "</th>";
+  }
+  content = "";
+  for(let i = 0; i<outputTable.length; i++) {
+    content = content + "<tr>";
+    for(let j=0; j<outputTable[i].length;j++) {
+      content = content + "<td>" + outputTable[i][j] + "</td>";
+    }
+    content = content + "</tr>";
+  }
+  document.getElementById("outputs").innerHTML = headers + content;
 }

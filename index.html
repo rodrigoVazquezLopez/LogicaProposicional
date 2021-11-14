@@ -13,6 +13,7 @@
   </head>
 
   <body>
+    <h1>Calculadora de Lógica Proposicional</h1>
     <div class="flex-container" style="width: 100%">
       <div class="flex-container calculator">
         <div class="input-expression" id="entrada">0</div>
@@ -43,7 +44,27 @@
         <button class="btn-calculator btn-equal-color" onclick="main()">RES</button>
       </div>
 
-      <div style="width: 59%" id="salida">aqui van los resultados</div>
+      <div style="width: 59%" id="infomation">
+        <h2>Instrucciones</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit reprehenderit quisquam veniam voluptate incidunt nulla, blanditiis eligendi, dolorem veritatis saepe necessitatibus alias, nobis rem? Tempore velit iure maxime facere. Fuga!</p>
+      </div>
+    </div>
+    <div>
+      <h2>Tokenizer</h2>
+        <div class="flex-container" id="tokenizer"></div>
+
+        <h2>Shunting Yard Algorithm</h2>
+        <div class="flex-container">
+          <p id="shunting"></p>
+        </div>
+    </div>
+    <div id="salida">
+      <h2>Tabla de Verdad</h2>
+      <table id="inputs">
+      </table>
+      <table id="outputs">
+      </table>
+
     </div>
 
     <div></div>

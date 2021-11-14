@@ -1,38 +1,50 @@
 function getNumberOfPrepositions(tokens) {
-  let cnt = 0;
-  let index = 0;
-  while (index < tokens.length) {
-    let token = tokens[index];
+  let prep = [];
+  for (let i = 0; i < tokens.length; i++) {
+    let token = tokens[i];
     if (token.type == "PREP") {
-      cnt++;
+      if (prep.indexOf(token.token) == -1) {
+        prep.push(token.token);
+      }
     }
-    index++;
   }
-  return cnt;
+  return prep.length;
 }
 
 function getNumberOfOperations(tokens) {
   let cnt = 0;
-  let index = 0;
-  while (index < tokens.length) {
-    let token = tokens[index];
+  for (let i = 0; i < tokens.length; i++) {
+    let token = tokens[i];
     if (token.type == "OPER" || token.type == "NEG") {
       cnt++;
     }
-    index++;
   }
   return cnt;
 }
 
 function generateInputTable(numOfPrepositions) {
-  let max = Math.pow(2, numOfPrepositions) - 1;
+  let max = Math.pow(2, numOfPrepositions);
   let table = [];
-  let numOfColumns = max.toString(2).length;
-  let index = 0;
-  while (index <= max) {
-    let x = index.toString(2);
-    table.push(x.padStart(numOfColumns, 0));
-    index++;
+  let numOfColumns = max.toString(2).length - 1;
+  for (let i = 0; i < max; i++) {
+    let binary = i.toString(2);
+    let x = binary.padStart(numOfColumns, 0);
+    let row = x.split("");
+    table.push(row);
+  }
+  return table;
+}
+
+function generateOutputTable(numOfPrepositions, numOfOperations) {
+  let max = Math.pow(2, numOfPrepositions);
+  let table = [];
+
+  for (let i = 0; i < max; i++) {
+    let row = [];;
+    for (let j = 0; j < numOfOperations; j++) {
+      row.push("0");
+    }
+    table.push(row);
   }
   console.log(table);
   return table;
@@ -40,13 +52,13 @@ function generateInputTable(numOfPrepositions) {
 
 function getInputLabels(tokens) {
   let labels = [];
-  let index = 0;
-  while (index < tokens.length) {
-    let token = tokens[index];
+  for (let i = 0; i < tokens.length; i++) {
+    let token = tokens[i];
     if (token.type == "PREP") {
-      labels.push(token.token);
+      if (labels.indexOf(token.token) == -1) {
+        labels.push(token.token);
+      }
     }
-    index++;
   }
   labels.sort();
   return labels;
@@ -60,7 +72,7 @@ function negation(propA) {
   }
 }
 
-function conjuction(propA, propB) {
+function conjunction(propA, propB) {
   if (propA == "1" && propB == "1") {
     return "1";
   } else {
@@ -100,11 +112,194 @@ function exclusiveDisjunction(propA, propB) {
   }
 }
 
-function evaluateExpression(posfix){
-    let numPrepositions = getNumberOfPrepositions(posfix);
-    let numOperations = getNumberOfOperations(posfix);
-    inputTable = generateInputTable(numPrepositions);
-    inputLabels = getInputLabels(posfix);
-    console.log(inputLabels);
-    return inputTable;
+function evaluateExpression(posfix) {
+  let numPrepositions = getNumberOfPrepositions(posfix);
+  let numOperations = getNumberOfOperations(posfix);
+  let inputTable = generateInputTable(numPrepositions);
+  let inputLabels = getInputLabels(posfix);
+  let outputTable = generateOutputTable(numPrepositions, numOperations);
+
+  let s = new Stack();
+  let t = new Token("", "PARTIALRES");
+
+  let operatorIndex = 0;
+  let searchIndexOp1 = 0;
+  let searchIndexOp2 = 0;
+
+  let outputLabels = [];
+  let max = Math.pow(2, numPrepositions);
+
+  for (let i = 0; i < posfix.length; i++) {
+    let op1, op2;
+    let token = posfix[i];
+    if (token.type == "PREP") {
+      //si es proposición
+      s.push(token);
+    } else if (token.type == "NEG") {
+      // si es negacion
+      op1 = s.pop();
+      if (op1.type == "PARTIALRES") {
+        searchIndexOp1 = outputLabels.indexOf(op1.token);
+        for (let j = 0; j < max; j++) {
+          outputTable[j][operatorIndex] = negation(outputTable[j][searchIndexOp1]);
+        }
+      } else {
+        searchIndexOp1 = inputLabels.indexOf(op1.token);
+        for (let j = 0; j < max; j++) {
+          outputTable[j][operatorIndex] = negation(inputTable[j][searchIndexOp1]);
+        }
+      }
+
+      t.token = token.token + op1.token;
+      outputLabels.push(t.token);
+      s.push(t);
+      operatorIndex++;
+    } else {
+      // si es otro operador
+      op2 = s.pop();
+      op1 = s.pop();
+
+      console.log("op1.token = " + op1.token + "op2.token = " + op2.token)
+
+      if (op1.type == "PARTIALRES" && op2.type == "PARTIALRES") {
+        searchIndexOp1 = outputLabels.indexOf(op1.token);
+        searchIndexOp2 = outputLabels.indexOf(op2.token);
+        console.log("searchIndexOp1 = " + searchIndexOp1 + "searchIndexOp2 = " + searchIndexOp2);
+        switch (token.token) {
+          case charOpConj:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = conjunction(outputTable[j][searchIndexOp1], outputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpDisy:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = disjunction(outputTable[j][searchIndexOp1], outputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpImp:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = implication(outputTable[j][searchIndexOp1], outputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpBicond:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = biconditional(outputTable[j][searchIndexOp1], outputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpDisyExc:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = exclusiveDisjunction(outputTable[j][searchIndexOp1], outputTable[j][searchIndexOp2]);
+            }
+            break;
+        }
+      } else if (op1.type == "PREP" && op2.type == "PARTIALRES") {
+        searchIndexOp1 = inputLabels.indexOf(op1.token);
+        searchIndexOp2 = outputLabels.indexOf(op2.token);
+        switch (token.token) {
+          case charOpConj:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = conjunction(inputTable[j][searchIndexOp1], outputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpDisy:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = disjunction(inputTable[j][searchIndexOp1], outputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpImp:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = implication(inputTable[j][searchIndexOp1], outputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpBicond:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = biconditional(inputTable[j][searchIndexOp1], outputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpDisyExc:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = exclusiveDisjunction(inputTable[j][searchIndexOp1], outputTable[j][searchIndexOp2]);
+            }
+            break;
+        }
+      } else if (op1.type == "PARTIALRES" && op2.type == "PREP") {
+        searchIndexOp1 = outputLabels.indexOf(op1.token);
+        searchIndexOp2 = inputLabels.indexOf(op2.token);
+        switch (token.token) {
+          case charOpConj:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = conjunction(outputTable[j][searchIndexOp1], inputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpDisy:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = disjunction(outputTable[j][searchIndexOp1], inputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpImp:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = implication(outputTable[j][searchIndexOp1], inputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpBicond:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = biconditional(outputTable[j][searchIndexOp1], inputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpDisyExc:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = exclusiveDisjunction(outputTable[j][searchIndexOp1], inputTable[j][searchIndexOp2]);
+            }
+            break;
+        }
+      } else {
+        searchIndexOp1 = inputLabels.indexOf(op1.token);
+        searchIndexOp2 = inputLabels.indexOf(op2.token);
+        switch (token.token) {
+          case charOpConj:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = conjunction(inputTable[j][searchIndexOp1], inputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpDisy:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = disjunction(inputTable[j][searchIndexOp1], inputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpImp:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = implication(inputTable[j][searchIndexOp1], inputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpBicond:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = biconditional(inputTable[j][searchIndexOp1], inputTable[j][searchIndexOp2]);
+            }
+            break;
+          case charOpDisyExc:
+            for (let j = 0; j < max; j++) {
+              outputTable[j][operatorIndex] = exclusiveDisjunction(inputTable[j][searchIndexOp1], inputTable[j][searchIndexOp2]);
+            }
+            break;
+        }
+      }
+      t.token = op1.token + token.token + op2.token;
+      console.log(t.token);
+      outputLabels.push(t.token);
+      s.push(t);
+      operatorIndex++;
+    }
+  }
+
+  console.log("Input labels : ");
+  console.log(inputLabels);
+  console.log("Input table : ");
+  console.log(inputTable);
+  console.log("Output labels : ");
+  console.log(outputLabels);
+  console.log("Output table : ");
+  console.log(outputTable);
+
+
+  return [inputLabels, outputLabels, inputTable, outputTable];
 }
