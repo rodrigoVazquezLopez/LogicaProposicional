@@ -46,7 +46,6 @@ function generateOutputTable(numOfPrepositions, numOfOperations) {
     }
     table.push(row);
   }
-  console.log(table);
   return table;
 }
 
@@ -120,8 +119,7 @@ function evaluateExpression(posfix) {
   let outputTable = generateOutputTable(numPrepositions, numOperations);
 
   let s = new Stack();
-  let t = new Token("", "PARTIALRES");
-
+  
   let operatorIndex = 0;
   let searchIndexOp1 = 0;
   let searchIndexOp2 = 0;
@@ -131,6 +129,7 @@ function evaluateExpression(posfix) {
 
   for (let i = 0; i < posfix.length; i++) {
     let op1, op2;
+
     let token = posfix[i];
     if (token.type == "PREP") {
       //si es proposición
@@ -149,8 +148,7 @@ function evaluateExpression(posfix) {
           outputTable[j][operatorIndex] = negation(inputTable[j][searchIndexOp1]);
         }
       }
-
-      t.token = token.token + op1.token;
+      let t = new Token(token.token + op1.token, "PARTIALRES");
       outputLabels.push(t.token);
       s.push(t);
       operatorIndex++;
@@ -159,12 +157,14 @@ function evaluateExpression(posfix) {
       op2 = s.pop();
       op1 = s.pop();
 
-      console.log("op1.token = " + op1.token + "op2.token = " + op2.token)
+      console.log("op1.token = " + op1.token + " op2.token = " + op2.token)
 
       if (op1.type == "PARTIALRES" && op2.type == "PARTIALRES") {
         searchIndexOp1 = outputLabels.indexOf(op1.token);
         searchIndexOp2 = outputLabels.indexOf(op2.token);
         console.log("searchIndexOp1 = " + searchIndexOp1 + "searchIndexOp2 = " + searchIndexOp2);
+
+        // el error esta por aquí
         switch (token.token) {
           case charOpConj:
             for (let j = 0; j < max; j++) {
@@ -283,10 +283,11 @@ function evaluateExpression(posfix) {
             break;
         }
       }
-      t.token = op1.token + token.token + op2.token;
+      let t = new Token(op1.token + token.token + op2.token, "PARTIALRES");
       console.log(t.token);
       outputLabels.push(t.token);
       s.push(t);
+      console.log(s);
       operatorIndex++;
     }
   }

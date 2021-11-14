@@ -23,7 +23,7 @@ class Stack {
    */
   pop() {
     if (this.items.length == 0) {
-      return "underfow";
+      return "underflow";
     }
     return this.items.pop();
   }
