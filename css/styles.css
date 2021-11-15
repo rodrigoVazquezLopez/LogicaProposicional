@@ -18,17 +18,24 @@ footer {
   color: #6a7c8f;
 }
 
-h1, h2 {
+h1 {
   font-family: Ubuntu, sans-serif;
-  font-size: 2.875;
+  font-size: 2.875rem;
+  text-align: center;
+  margin: 2.5rem 0;
+}
+
+h2 {
+  font-family: Ubuntu, sans-serif;
+  font-size: 1.75rem;
   text-align: center;
   margin: 2.5rem 0;
 }
 
 p {
-  font-size: 1.125em;
-  line-height: 1.6em;
-  margin-bottom: 1.6em;
+  font-size: 1.125rem;
+  line-height: 1.6rem;
+  margin-bottom: 1.6rem;
 }
 
 .flex-container {
@@ -36,6 +43,7 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  padding: 0.625rem 0;
 }
 
 .calculator-container {
@@ -120,7 +128,7 @@ p {
 .token-data {
   margin: 0;
   font-size: 2rem;
-  padding: 0.625rem;
+  padding: 1.25rem;
   border: 2px solid rgb(96, 154, 161);
   border-radius: 10px 10px 0 0;
 }
@@ -138,7 +146,7 @@ p {
   width: 45%;
   border: 1px solid #000;
   margin: 10px;
-  height: 200px;
+  height: 170px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -171,5 +179,12 @@ p {
 }
 
 table, th, td {
+  border-collapse: collapse;
+  padding: 15px;
   border: 1px solid black;
+  font-size: 1.125rem;
+}
+
+#inputs th, #inputs td {
+
 }
