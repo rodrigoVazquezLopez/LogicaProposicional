@@ -1,5 +1,5 @@
 /**
- *
+ * write a proposition character on input box.
  * @param {string} char - a character between A-I
  */
 function prepBtn(char) {
@@ -14,7 +14,7 @@ function prepBtn(char) {
 }
 
 /**
- *
+ *  write an operation or parenthesis character on input box.
  * @param {object} value - a number between 1-6 or characters '(', ')'.
  * @returns {string} error if the input data is invlid
  */
@@ -56,8 +56,9 @@ function btnOper(value) {
   }
 }
 
-// funciones
-
+/**
+ * delete a character on input box.
+ */
 function btnFunDEL() {
   const entrada = document.getElementById("entrada");
   if (entrada.textContent != "0") {
@@ -74,6 +75,9 @@ function btnFunAC() {
   entrada.textContent = "0";
 }
 
+/**
+ * main function
+ */
 function showResults() {
   const entrada = document.getElementById("entrada");
   let tokens = tokenizer(entrada.textContent);
@@ -112,7 +116,7 @@ function displayPosfix(arr) {
     }
 
     txt = txt + '</div></div><div class="partial-container"><p class="posfix-subtitle">Stack</p><div class="stack-values-container">';
-    for (let j = 0; j < steps[i][1].length; j++) {
+    for (let j = steps[i][1].length-1; j >= 0 ; j--) {
       txt = txt + textA + steps[i][1][j].token + textB + steps[i][1][j].type + textC;
     }
     txt = txt + "</div></div>";
@@ -120,7 +124,7 @@ function displayPosfix(arr) {
   document.getElementById("partial_results").innerHTML = txt;
 
   let txtShunting = "";
-  txtShunting = txtShunting + '<div class="posfix-output-container"><p class="posfix-subtitle">Final Output</p><div class="posfix-partial-values-container">';
+  txtShunting = txtShunting + '<div class="posfix-output-container"><p class="posfix-subtitle">Output</p><div class="posfix-partial-values-container">';
   for (let i = 0; i < posfix.length; i++) {
     txtShunting = txtShunting + textA + posfix[i].token + textB + posfix[i].type + textC;
   }

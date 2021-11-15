@@ -40,6 +40,8 @@ function shuntingYard(tokens) {
   }
   while (!s.isEmpty()) {
     posfix.push(s.pop());
+    let step = [Array.from(posfix), Array.from(s.items)];
+    steps.push(step);
   }
   return [posfix, steps];
 }

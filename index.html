@@ -53,56 +53,56 @@
 
       <div class="calculator-instructions-container">
         <h2>Instrucciones</h2>
-        <p>La calculadora esta diseñada para realizar el cálculo de de proposiciones lógicas utilizando tablas de verdad.</p>
-        <p>Para ingresar las proposiciones utilice los botones <strong>A - I</strong> mientras que las operaciones lógicas que se pueden realizar son las que se muestran en la siguiente tabla:</p>
-        <table>
+        <p>La calculadora esta diseñada para realizar el cálculo de de proposiciones lógicas utilizando tablas de verdad. Las operaciones lógicas que se pueden realizar se muestran en la siguiente tabla:</p>
+        <table class="info-operations-table">
           <tr>
             <th>Prioridad</th>
             <th>Operador</th>
             <th>Operación</th>
           </tr>
           <tr>
-            <td>1</td>
-            <td>&#x00AC</td>
-            <td>Negación. Requiere un operando</td>
+            <td class="text-center">1</td>
+            <td class="text-center">&#x00AC;</td>
+            <td>Negación: &#x00AC;A</td>
           </tr>
           <tr>
-            <td>2</td>
-            <td>&#x2227</td>
-            <td>Conjunción. Requiere dos operandos</td>
+            <td class="text-center">2</td>
+            <td class="text-center">&#x2227;</td>
+            <td>Conjunción: A&#x2227;B</td>
           </tr>
           <tr>
-            <td>3</td>
-            <td>&#x2228</td>
-            <td>Disyunción. Requiere dos operandos</td>
+            <td class="text-center">3</td>
+            <td class="text-center">&#x2228;</td>
+            <td>Disyunción: A&#x2228;B</td>
           </tr>
           <tr>
-            <td>4</td>
-            <td>&#x2192</td>
-            <td>Implicación. Requiere dos operandos</td>
+            <td class="text-center">4</td>
+            <td class="text-center">&#x2192;</td>
+            <td>Implicación: A&#x2192;B</td>
           </tr>
           <tr>
-            <td>5</td>
-            <td>&#x2194</td>
-            <td>Bicondicional. Requiere dos operandos</td>
+            <td class="text-center">5</td>
+            <td class="text-center">&#x2194;</td>
+            <td>Bicondicional: A&#x2194;B</td>
           </tr>
           <tr>
-            <td>6</td>
-            <td>&#x2295;</td>
-            <td>Disyunción exclusiva. Requiere dos operandos</td>
+            <td class="text-center">6</td>
+            <td class="text-center">&#x2295;</td>
+            <td>Disyunción exclusiva: A&#x2295;B</td>
           </tr>
         </table>
-        <p>Se pueden utilizar paréntesis para agrupar las operaciones, sin embargo, en caso no hacerlo el orden de evaluación de la expresión se realiza con base en la prioridad del operador definido en la columna <strong>prioridad</strong>, siendo la negación la operación con mayor prioridad y la disyunción exclusiva la operación con menor prioridad.</p>
-        <p>En caso de equivocarse a la hora de ingresar la expresión utilice el botón <strong>DEL</strong> para borrar los caracteres necesarios.</p>
-        <p>Para borrar el contenido pulse el botón <strong>AC</strong>.</p>
-        <p>Para visualizar el resultado y el proceso de evaluación de la expresión utilice el botón <strong>RES</strong>.</p>
+        <p>Se pueden utilizar paréntesis para agrupar las operaciones, sin embargo, en caso no hacerlo el orden de evaluación de los operadores se realiza con base en valor definido en la columna <strong>prioridad</strong> de la tabla anterior, siendo la negación la operación con mayor prioridad y la disyunción exclusiva la operación con menor prioridad.</p>
+        <p>Para ingresar las proposiciones utilice los botones con la letras <strong>A - I</strong>.</p>   
+        <p>En caso que necesite corregir la expresión ingreada utilice el botón <strong>DEL</strong> para borrar los caracteres que considere necesarios.</p>
+        <p>Para borrar por completo el contenido pulse el botón <strong>AC</strong>.</p>
+        <p>Para visualizar el resultado pulse el botón <strong>RES</strong>.</p>
       </div>
     </section>
     <section>
       <div>
         <h2>Tokenizer</h2>
-        <p class="info-paragraph">La expresión ingresada se analiza con la finalidad de identificar los distintos elementos que la componen: proposiciones, operaciones y paréntesis. Como resultado del análisis, cada elemento que compone la expresión se separa en tokens que se almacenan de manera independiente junto con una etiqueta que identifica su tipo.</p>
-        <p class="info-paragraph">Como resultado del análisis se encontraron los siguientes tokens:</p>
+        <p class="info-paragraph">La expresión ingresada se analiza con la finalidad de identificar los distintos elementos que la componen: proposiciones, operaciones y paréntesis. Como resultado del análisis, la expresión se separa en tokens que se almacenan de manera independiente junto con una etiqueta que identifica el tipo.</p>
+        <p class="info-paragraph">La cadena analizada se compone de los siguientes tokens:</p>
         <div class="flex-container" style="outline: 1px solid red" id="tokenizer"></div>
       </div>
       <div>
@@ -111,8 +111,9 @@
       </div>
       <div>
         <h2>Shunting Yard Algorithm</h2>
-        <p class="info-paragraph">Una vez que se verificó que la cadena ingresada es sintácticamente correcta, se procede a evaluarla. Por ello, la expresión originalmente ingresada en notación infija se debe convertir a notación prefija (también conocida como notación polaca inversa) con la finalidad de facilitar el cómputo. Una forma de realizar la conversión es utilizando el algoritmo Shunting Yard</p>
-        <p class="info-paragraph">El algoritmo de Shunting Yard es un algoritmo basado en pila (stack). Para mostrar su funcionamiento se presenta la salida y el contenido de la pila de las etapas intermedias.</p>
+        <p class="info-paragraph">Una vez que se verificó que la cadena de entrada es sintácticamente correcta, el siguiente paso pepararla para evaluar la expresión. Por ello, la expresión originalmente ingresada en notación infija se debe convertir a notación prefija (también conocida como notación polaca inversa) con la finalidad de facilitar el cómputo.</p>
+        <p class="info-paragraph">Una de las formas de realizar la conversión infijo a posfijo es utilizar el algoritmo Shunting Yard el cuál es un algoritmo basado en el uso de una pila (stack). </p>
+        <p class="info-paragraph">A continuación se muestra el proceso de evaluaación del algoritmo con la cadena de entrada mostrando la cadena parcial de salida y el contenido de la pila de cada iteración.</p>
         <div class="flex-container" id="partial_results"></div>
         <div class="flex-container" style="outline: 1px solid red" id="shunting"></div>
       </div>
@@ -120,8 +121,8 @@
         <h2>Tabla de Verdad</h2>
         <p class="info-paragraph">Finalmente, se procede a evaluar la expresión:</p>
         <div class="flex-container">
-          <table id="inputs"></table>
-          <table id="outputs"></table>
+          <table class="text-center" id="inputs"></table>
+          <table class="text-center" id="outputs"></table>
         </div>
       </div>
     </section>

@@ -111,8 +111,17 @@ p {
   padding: 0 1.25rem;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.info-operations-table {
+  margin: auto;
+  border-radius: 0.5rem;
+}
+
 .card-token-element {
-  width: 90px;
+  width: 75px;
   text-align: center;
   margin: 1px;
 }
@@ -128,26 +137,32 @@ p {
 .token-data {
   margin: 0;
   font-size: 2rem;
-  padding: 1.25rem;
+  padding: 1.125rem;
   border: 2px solid rgb(96, 154, 161);
   border-radius: 10px 10px 0 0;
 }
 
 .token-type-data {
   margin: 0;  
-  padding: 0.3125rem 0;
+  /*padding: 0.3125rem 0;*/
   background-color: rgb(96, 154, 161);
   color: #fff;
   border-radius: 0 0 10px 10px;
-  font-weight: 400;
+  font-size: 0.75rem;
+  font-variant: small-caps;
 }
 
 .partial-container {
   width: 45%;
   border: 1px solid #000;
   margin: 10px;
-  height: 170px;
+  min-height: 155px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.partial-container:hover {
+  border: 2px solid rgb(96, 154, 161);
+  /*box-shadow: 0 4px 8px 0 rgba(96, 154, 161, 0.2), 0 6px 20px 0 rgba(96, 154, 161, 0.19);*/
 }
 
 .stack-values-container {
