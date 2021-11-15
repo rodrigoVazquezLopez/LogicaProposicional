@@ -157,14 +157,11 @@ function evaluateExpression(posfix) {
       op2 = s.pop();
       op1 = s.pop();
 
-      console.log("op1.token = " + op1.token + " op2.token = " + op2.token)
-
       if (op1.type == "PARTIALRES" && op2.type == "PARTIALRES") {
         searchIndexOp1 = outputLabels.indexOf(op1.token);
         searchIndexOp2 = outputLabels.indexOf(op2.token);
         console.log("searchIndexOp1 = " + searchIndexOp1 + "searchIndexOp2 = " + searchIndexOp2);
 
-        // el error esta por aquí
         switch (token.token) {
           case charOpConj:
             for (let j = 0; j < max; j++) {
@@ -284,14 +281,13 @@ function evaluateExpression(posfix) {
         }
       }
       let t = new Token(op1.token + token.token + op2.token, "PARTIALRES");
-      console.log(t.token);
       outputLabels.push(t.token);
       s.push(t);
       console.log(s);
       operatorIndex++;
     }
   }
-
+/*
   console.log("Input labels : ");
   console.log(inputLabels);
   console.log("Input table : ");
@@ -300,7 +296,7 @@ function evaluateExpression(posfix) {
   console.log(outputLabels);
   console.log("Output table : ");
   console.log(outputTable);
-
+*/
 
   return [inputLabels, outputLabels, inputTable, outputTable];
 }

@@ -6,6 +6,7 @@
 function shuntingYard(tokens) {
   let posfix = [];
   let s = new Stack();
+  let steps = [];
   index = 0;
   while (index < tokens.length) {
     let token = tokens[index];
@@ -33,12 +34,14 @@ function shuntingYard(tokens) {
     } else {
       return "error";
     }
+    let step = [Array.from(posfix), Array.from(s.items)];
+    steps.push(step);
     index++;
   }
   while (!s.isEmpty()) {
     posfix.push(s.pop());
   }
-  return posfix;
+  return [posfix, steps];
 }
 
 /**

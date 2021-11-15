@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Prueba</title>
+    <title>Calculadora de Lógica Proposicional</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu|Lora" />
     <script src="js/constants.js"></script>
     <script src="js/tokenizer.js"></script>
     <script src="js/stack.js"></script>
@@ -13,61 +14,120 @@
   </head>
 
   <body>
-    <h1>Calculadora de Lógica Proposicional</h1>
-    <div class="flex-container" style="width: 100%">
-      <div class="flex-container calculator">
-        <div class="input-expression" id="entrada">0</div>
+    <header>
+      <h1>Calculadora de Lógica Proposicional</h1>
+      <p>Calculadora didáctica de operaciones lógicas open source desarrollada enteramente en javascript. Auxiliar en cursos de Lógica matemática, programación y teoría de la computación</p>
+    </header>
 
-        <button class="btn-calculator" onclick="btnOpLeftPar()">(</button>
-        <button class="btn-calculator" onclick="btnOpRightPar()">)</button>
-        <button class="btn-calculator btn-delete-color" onclick="btnFunDEL()">DEL</button>
-        <button class="btn-calculator btn-delete-color" onclick="btnFunAC()">AC</button>
+    <section class="flex-container calculator-section">
+      <div class="calculator-container">
+        <div class="flex-container calculator">
+          <div class="input-expression" id="entrada">0</div>
 
-        <button class="btn-calculator" onclick="btnOpNeg()">&#x00AC;</button>
-        <button class="btn-calculator" onclick="btnOpImp()">&#x2192;</button>
-        <button class="btn-calculator" onclick="btnOpBicond()">&#x2194;</button>
-        <button class="btn-calculator" onclick="btnOpDisyExc()">&#x2295;</button>
+          <button class="btn-calculator" onclick="btnOper('(')">(</button>
+          <button class="btn-calculator" onclick="btnOper(')')">)</button>
+          <button class="btn-calculator btn-delete-color" onclick="btnFunDEL()">DEL</button>
+          <button class="btn-calculator btn-delete-color" onclick="btnFunAC()">AC</button>
 
-        <button class="btn-calculator btn-preposition-color" onclick="btnA()">A</button>
-        <button class="btn-calculator btn-preposition-color" onclick="btnB()">B</button>
-        <button class="btn-calculator btn-preposition-color" onclick="btnC()">C</button>
-        <button class="btn-calculator" onclick="btnOpConj()">&#x2227;</button>
+          <button class="btn-calculator" onclick="btnOper(1)">&#x00AC;</button>
+          <button class="btn-calculator" onclick="btnOper(4)">&#x2192;</button>
+          <button class="btn-calculator" onclick="btnOper(5)">&#x2194;</button>
+          <button class="btn-calculator" onclick="btnOper(6)">&#x2295;</button>
 
-        <button class="btn-calculator btn-preposition-color" onclick="btnD()">D</button>
-        <button class="btn-calculator btn-preposition-color" onclick="btnE()">E</button>
-        <button class="btn-calculator btn-preposition-color" onclick="btnF()">F</button>
-        <button class="btn-calculator" onclick="btnOpDisy()">&#x2228;</button>
+          <button class="btn-calculator btn-preposition-color" onclick="prepBtn('A')">A</button>
+          <button class="btn-calculator btn-preposition-color" onclick="prepBtn('B')">B</button>
+          <button class="btn-calculator btn-preposition-color" onclick="prepBtn('C')">C</button>
+          <button class="btn-calculator" onclick="btnOper(2)">&#x2227;</button>
 
-        <button class="btn-calculator btn-preposition-color" onclick="btnG()">G</button>
-        <button class="btn-calculator btn-preposition-color" onclick="btnH()">H</button>
-        <button class="btn-calculator btn-preposition-color" onclick="btnI()">I</button>
-        <button class="btn-calculator btn-equal-color" onclick="main()">RES</button>
-      </div>
+          <button class="btn-calculator btn-preposition-color" onclick="prepBtn('D')">D</button>
+          <button class="btn-calculator btn-preposition-color" onclick="prepBtn('E')">E</button>
+          <button class="btn-calculator btn-preposition-color" onclick="prepBtn('F')">F</button>
+          <button class="btn-calculator" onclick="btnOper(3)">&#x2228;</button>
 
-      <div style="width: 59%" id="infomation">
-        <h2>Instrucciones</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit reprehenderit quisquam veniam voluptate incidunt nulla, blanditiis eligendi, dolorem veritatis saepe necessitatibus alias, nobis rem? Tempore velit iure maxime facere. Fuga!</p>
-      </div>
-    </div>
-    <div>
-      <h2>Tokenizer</h2>
-        <div class="flex-container" id="tokenizer"></div>
-
-        <h2>Shunting Yard Algorithm</h2>
-        <div class="flex-container">
-          <p id="shunting"></p>
+          <button class="btn-calculator btn-preposition-color" onclick="prepBtn('G')">G</button>
+          <button class="btn-calculator btn-preposition-color" onclick="prepBtn('H')">H</button>
+          <button class="btn-calculator btn-preposition-color" onclick="prepBtn('I')">I</button>
+          <button class="btn-calculator btn-equal-color" onclick="showResults()">RES</button>
         </div>
-    </div>
-    <div id="salida">
-      <h2>Tabla de Verdad</h2>
-      <table id="inputs">
-      </table>
-      <table id="outputs">
-      </table>
+      </div>
 
-    </div>
+      <div class="calculator-instructions-container">
+        <h2>Instrucciones</h2>
+        <p>La calculadora esta diseñada para realizar el cálculo de de proposiciones lógicas utilizando tablas de verdad.</p>
+        <p>Para ingresar las proposiciones utilice los botones <strong>A - I</strong> mientras que las operaciones lógicas que se pueden realizar son las que se muestran en la siguiente tabla:</p>
+        <table>
+          <tr>
+            <th>Prioridad</th>
+            <th>Operador</th>
+            <th>Operación</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>&#x00AC</td>
+            <td>Negación. Requiere un operando</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>&#x2227</td>
+            <td>Conjunción. Requiere dos operandos</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>&#x2228</td>
+            <td>Disyunción. Requiere dos operandos</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>&#x2192</td>
+            <td>Implicación. Requiere dos operandos</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>&#x2194</td>
+            <td>Bicondicional . Requiere dos operandos</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>&#x2295;</td>
+            <td>Disyunción exclusiva . Requiere dos operandos</td>
+          </tr>
+        </table>
+        <p>Se pueden utilizar paréntesis para agrupar las operaciones, sin embargo, en caso no hacerlo el orden de evaluación de la expresión se realiza con base en la prioridad del operador definido en la columna <strong>prioridad</strong>, siendo la negación la operación con mayor prioridad y la disyunción exclusiva la operación con menor prioridad.</p>
+        <p>En caso de equivocarse a la hora de ingresar la expresión utilice el botón <strong>DEL</strong> para borrar los caracteres necesarios.</p>
+        <p>Para borrar el contenido pulse el botón <strong>AC</strong>.</p>
+        <p>Para visualizar el resultado y el proceso de evaluación de la expresión utilice el botón <strong>RES</strong>.</p>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2>Tokenizer</h2>
+        <p class="info-paragraph">La expresión ingresada se analiza con la finalidad de identificar los distintos elementos que la componen: proposiciones, operaciones y paréntesis. Como resultado del análisis, cada elemento que compone la expresión se separa en tokens que se almacenan de manera independiente junto con una etiqueta que identifica su tipo.</p>
+        <p class="info-paragraph">Como resultado del análisis se encontraron los siguientes tokens:</p>
+        <div class="flex-container" style="outline: 1px solid red" id="tokenizer"></div>
+      </div>
+      <div>
+        <h2>Analizador sintáctico</h2>
+        <p class="info-paragraph">Próximamente...</p>
+      </div>
+      <div>
+        <h2>Shunting Yard Algorithm</h2>
+        <p class="info-paragraph">Una vez que se verificó que la cadena ingresada es sintácticamente correcta, se procede a evaluarla. Por ello, la expresión originalmente ingresada en notación infija se debe convertir a notación prefija (también conocida como notación polaca inversa) con la finalidad de facilitar el cómputo. Una forma de realizar la conversión es utilizando el algoritmo Shunting Yard</p>
+        <p class="info-paragraph">El algoritmo de Shunting Yard es un algoritmo basado en pila (stack). Para mostrar su funcionamiento se presenta la salida y el contenido de la pila de las etapas intermedias.</p>
+        <div class="flex-container" id="partial_results"></div>
+        <div class="flex-container" style="outline: 1px solid red" id="shunting"></div>
+      </div>
+      <div>
+        <h2>Tabla de Verdad</h2>
+        <p class="info-paragraph">Finalmente, se procede a evaluar la expresión:</p>
+        <div class="flex-container">
+          <table id="inputs"></table>
+          <table id="outputs"></table>
+        </div>
+      </div>
+    </section>
 
-    <div></div>
-    <div></div>
+    <footer style="outline: 1px solid red">
+      <p>2021 &copy; Rodrigo Vázquez-López</p>
+    </footer>
   </body>
 </html>
