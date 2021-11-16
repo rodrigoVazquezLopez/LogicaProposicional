@@ -37,6 +37,22 @@ p {
   margin-bottom: 1.6rem;
 }
 
+.code-button {
+  display: inline-block;
+  text-align: center;
+  background-color: #293037;
+  color: #fff;
+  border: 2px solid white;
+  padding: 0.875rem 1.75rem;
+  font-size: 1rem;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.code-button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .flex-container {
   display: flex;
   flex-wrap: wrap;
