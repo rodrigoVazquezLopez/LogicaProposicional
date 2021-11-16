@@ -89,6 +89,10 @@ function showResults() {
   displayTruthTable(results);
 }
 
+/**
+ * display contents of tokenized input
+ * @param {array} arr - array of tokens
+ */
 function displayTokens(arr) {
   let textA = '<div class="card-token-element"><p class="token-data">';
   let textB = '</p><p class="token-type-data">';
@@ -100,6 +104,10 @@ function displayTokens(arr) {
   document.getElementById("tokenizer").innerHTML = tokens;
 }
 
+/**
+ *display contents 
+ * @param {array} arr - an array composed by array of tokens in posfix notation (index 0) and array composed by 
+ */
 function displayPosfix(arr) {
   let posfix = arr[0];
   let steps = arr[1];
@@ -135,6 +143,10 @@ function displayPosfix(arr) {
   document.getElementById("shunting").innerHTML = txtShnt + "</div></div>";
 }
 
+/**
+ * 
+ * @param {array} arr 
+ */
 function displayTruthTable(arr) {
   let inputLabels = arr[0];
   let outputLabels = arr[1];

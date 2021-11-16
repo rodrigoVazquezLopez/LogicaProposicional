@@ -1,3 +1,8 @@
+/**
+ * gets the number of prepositions in array of tokenized string
+ * @param {array} tokens - array of tokens objects
+ * @returns {number} number of prepositions
+ */
 function getNumberOfPrepositions(tokens) {
   let prep = [];
   for (let i = 0; i < tokens.length; i++) {
@@ -11,6 +16,11 @@ function getNumberOfPrepositions(tokens) {
   return prep.length;
 }
 
+/**
+ * gets the number of operations in array of tokenized string
+ * @param {array} tokens - array of tokens objects
+ * @returns {number} number of operations
+ */
 function getNumberOfOperations(tokens) {
   let cnt = 0;
   for (let i = 0; i < tokens.length; i++) {
@@ -22,6 +32,11 @@ function getNumberOfOperations(tokens) {
   return cnt;
 }
 
+/**
+ * generate truth table's inputs bidimensional array
+ * @param {number} numOfPrepositions - number of prepositions 
+ * @returns {array} a table of inputs
+ */
 function generateInputTable(numOfPrepositions) {
   let max = Math.pow(2, numOfPrepositions);
   let table = [];
@@ -35,6 +50,12 @@ function generateInputTable(numOfPrepositions) {
   return table;
 }
 
+/**
+ * generate truth table's output bidimensional array
+ * @param {number} numOfPrepositions - number of prepositions
+ * @param {number} numOfOperations - number of operations
+ * @returns {array} a table of outputs
+ */
 function generateOutputTable(numOfPrepositions, numOfOperations) {
   let max = Math.pow(2, numOfPrepositions);
   let table = [];
@@ -49,6 +70,11 @@ function generateOutputTable(numOfPrepositions, numOfOperations) {
   return table;
 }
 
+/**
+ * generate an array of truth table inputs labels
+ * @param {array} tokens - array of tokens objets
+ * @returns {array} array of inputs labels
+ */
 function getInputLabels(tokens) {
   let labels = [];
   for (let i = 0; i < tokens.length; i++) {
@@ -63,6 +89,11 @@ function getInputLabels(tokens) {
   return labels;
 }
 
+/**
+ * implements negation operation truth table
+ * @param {string} propA - an input character
+ * @returns {string} an output character
+ */
 function negation(propA) {
   if (propA == "0") {
     return "1";
@@ -71,6 +102,12 @@ function negation(propA) {
   }
 }
 
+/**
+ * implements conjunction operation truth table
+ * @param {string} propA - proposition A input character
+ * @param {string} propB - proposition B input character
+ * @returns {string} an output character
+ */
 function conjunction(propA, propB) {
   if (propA == "1" && propB == "1") {
     return "1";
@@ -79,6 +116,12 @@ function conjunction(propA, propB) {
   }
 }
 
+/**
+ * implements disjunction operation truth table
+ * @param {string} propA - proposition A input character
+ * @param {string} propB - proposition B input character
+ * @returns {string} an output character
+ */
 function disjunction(propA, propB) {
   if (propA == "0" && propB == "0") {
     return "0";
@@ -87,6 +130,12 @@ function disjunction(propA, propB) {
   }
 }
 
+/**
+ * implements implication operation truth table
+ * @param {string} propA - proposition A input character
+ * @param {string} propB - proposition B input character
+ * @returns {string} an output character
+ */
 function implication(propA, propB) {
   if (propA == "1" && propB == "0") {
     return "0";
@@ -95,6 +144,12 @@ function implication(propA, propB) {
   }
 }
 
+/**
+ * implements biconditional operation truth table
+ * @param {string} propA - proposition A input character
+ * @param {string} propB - proposition B input character
+ * @returns {string} an output character
+ */
 function biconditional(propA, propB) {
   if (propA == propB) {
     return "1";
@@ -103,6 +158,12 @@ function biconditional(propA, propB) {
   }
 }
 
+/**
+ * implements exclusive disjunction operation truth table
+ * @param {string} propA - proposition A input character
+ * @param {string} propB - proposition B input character
+ * @returns {string} an output character
+ */
 function exclusiveDisjunction(propA, propB) {
   if (propA == propB) {
     return "0";
@@ -111,6 +172,11 @@ function exclusiveDisjunction(propA, propB) {
   }
 }
 
+/**
+ * evaluate an expresion and generate its truth table
+ * @param {array} posfix - array of tokenized string in posfix notation 
+ * @returns {array} array composed by input labels,output labels, input data and output data 
+ */
 function evaluateExpression(posfix) {
   let numPrepositions = getNumberOfPrepositions(posfix);
   let numOperations = getNumberOfOperations(posfix);
@@ -287,16 +353,5 @@ function evaluateExpression(posfix) {
       operatorIndex++;
     }
   }
-/*
-  console.log("Input labels : ");
-  console.log(inputLabels);
-  console.log("Input table : ");
-  console.log(inputTable);
-  console.log("Output labels : ");
-  console.log(outputLabels);
-  console.log("Output table : ");
-  console.log(outputTable);
-*/
-
   return [inputLabels, outputLabels, inputTable, outputTable];
 }
