@@ -14,7 +14,7 @@ function prepBtn(char) {
 }
 
 /**
- *  write an operation or parenthesis character on input box.
+ * write an operation or parenthesis character on input box.
  * @param {object} value - a number between 1-6 or characters '(', ')'.
  * @returns {string} error if the input data is invlid
  */
