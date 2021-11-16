@@ -60,7 +60,6 @@ p {
   flex-wrap: nowrap;
 }
 
-
 .input-expression {
   flex-basis: 95%;
   font-size: 2.5rem;
@@ -70,35 +69,35 @@ p {
 }
 
 .calculator {
-  background-color: #D7D7D7;
+  background-color: #d7d7d7;
   border: 1px solid black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.btn-calculator{
-    width: 24%;
-    min-width: 4.6875rem;
-    height: 50px;
-    margin: 0.1rem;
-    text-align: center;
-    font-size: 2rem;
-    border: none;
+.btn-calculator {
+  width: 24%;
+  min-width: 4.6875rem;
+  height: 50px;
+  margin: 0.1rem;
+  text-align: center;
+  font-size: 2rem;
+  border: none;
 }
 
-.btn-calculator:hover{
-    border: 2px solid rgb(96, 154, 161)
+.btn-calculator:hover {
+  border: 2px solid rgb(96, 154, 161);
 }
 
-.btn-preposition-color{
-    background-color: white;
+.btn-preposition-color {
+  background-color: white;
 }
 
-.btn-equal-color{
-    background-color: #C1D6D3;
+.btn-equal-color {
+  background-color: #c1d6d3;
 }
 
-.btn-delete-color{
-    background-color: #D6C1D6;
+.btn-delete-color {
+  background-color: #d6c1d6;
 }
 
 .info-paragraph {
@@ -142,7 +141,7 @@ p {
 }
 
 .token-type-data {
-  margin: 0;  
+  margin: 0;
   /*padding: 0.3125rem 0;*/
   background-color: rgb(96, 154, 161);
   color: #fff;
@@ -165,7 +164,8 @@ p {
   padding: 15px;
   background-color: cadetblue;
   border-radius: 5px 30px 0 30px;
-  width: 150px; color: white;
+  width: 150px;
+  color: white;
   text-align: center;
   font-family: Helvetica, sans-serif;
   font-weight: bold;
@@ -215,29 +215,32 @@ p {
   color: #fff;
   margin: 0;
   padding: 0.625rem;
-  font-size:1.5rem;
+  font-size: 1.5rem;
 }
 
 .stack-subtitle {
-  background-color: #D7D7D7;
+  background-color: #d7d7d7;
   margin: 0;
   padding: 0.625rem;
-  font-size:1.5rem;
+  font-size: 1.5rem;
 }
 
-table, th, td {
+table,
+th,
+td {
   border-collapse: collapse;
   padding: 15px;
   border: 1px solid black;
   font-size: 1.125rem;
 }
 
-#inputs th, #inputs td {
-
+#inputs th,
+#inputs td {
 }
 
 @media screen and (max-width: 1000px) {
-  .calculator-container, .calculator-instructions-container {
+  .calculator-container,
+  .calculator-instructions-container {
     width: 100%;
   }
 

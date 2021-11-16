@@ -113,14 +113,14 @@ function displayPosfix(arr) {
   let txt = "";
 
   for (let i = 0; i < steps.length; i++) {
-    txt = txt + itTxtA + "Iteration " + (i+1) + itTxtB;
+    txt = txt + itTxtA + "Iteration " + (i + 1) + itTxtB;
     txt = txt + '<div class="partial-container"><p class="output-subtitle">Output</p><div class="posfix-partial-values-container">';
     for (let j = 0; j < steps[i][0].length; j++) {
       txt = txt + txtA + steps[i][0][j].token + txtB + steps[i][0][j].type + txtC;
     }
 
     txt = txt + '</div></div><div class="partial-container"><p class="stack-subtitle">Stack</p><div class="stack-values-container">';
-    for (let j = steps[i][1].length-1; j >= 0 ; j--) {
+    for (let j = steps[i][1].length - 1; j >= 0; j--) {
       txt = txt + txtA + steps[i][1][j].token + txtB + steps[i][1][j].type + txtC;
     }
     txt = txt + "</div></div>";
@@ -132,7 +132,7 @@ function displayPosfix(arr) {
   for (let i = 0; i < posfix.length; i++) {
     txtShnt = txtShnt + txtA + posfix[i].token + txtB + posfix[i].type + txtC;
   }
-  document.getElementById("shunting").innerHTML = txtShnt + '</div></div>';
+  document.getElementById("shunting").innerHTML = txtShnt + "</div></div>";
 }
 
 function displayTruthTable(arr) {
