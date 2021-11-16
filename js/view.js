@@ -104,31 +104,35 @@ function displayPosfix(arr) {
   let posfix = arr[0];
   let steps = arr[1];
 
-  let textA = '<div class="card-token-element"><p class="token-data">';
-  let textB = '</p><p class="token-type-data">';
-  let textC = "</p></div>";
+  let itTxtA = '<div class="iteration-container"><div class="iteration-container-internal"><div class="iteration-title">';
+  let itTxtB = '</div><div class="iteration-border"></div></div></div>';
+
+  let txtA = '<div class="card-token-element"><p class="token-data">';
+  let txtB = '</p><p class="token-type-data">';
+  let txtC = "</p></div>";
   let txt = "";
 
   for (let i = 0; i < steps.length; i++) {
-    txt = txt + '<div class="partial-container"><p class="posfix-subtitle">Output</p><div class="posfix-partial-values-container">';
+    txt = txt + itTxtA + "Iteration " + (i+1) + itTxtB;
+    txt = txt + '<div class="partial-container"><p class="output-subtitle">Output</p><div class="posfix-partial-values-container">';
     for (let j = 0; j < steps[i][0].length; j++) {
-      txt = txt + textA + steps[i][0][j].token + textB + steps[i][0][j].type + textC;
+      txt = txt + txtA + steps[i][0][j].token + txtB + steps[i][0][j].type + txtC;
     }
 
-    txt = txt + '</div></div><div class="partial-container"><p class="posfix-subtitle">Stack</p><div class="stack-values-container">';
+    txt = txt + '</div></div><div class="partial-container"><p class="stack-subtitle">Stack</p><div class="stack-values-container">';
     for (let j = steps[i][1].length-1; j >= 0 ; j--) {
-      txt = txt + textA + steps[i][1][j].token + textB + steps[i][1][j].type + textC;
+      txt = txt + txtA + steps[i][1][j].token + txtB + steps[i][1][j].type + txtC;
     }
     txt = txt + "</div></div>";
   }
   document.getElementById("partial_results").innerHTML = txt;
 
-  let txtShunting = "";
-  txtShunting = txtShunting + '<div class="posfix-output-container"><p class="posfix-subtitle">Output</p><div class="posfix-partial-values-container">';
+  let txtShnt = itTxtA + "Result" itTxtB;
+  txtShnt = txtShnt + '<div class="posfix-output-container"><p class="output-subtitle">Output</p><div class="posfix-partial-values-container">';
   for (let i = 0; i < posfix.length; i++) {
-    txtShunting = txtShunting + textA + posfix[i].token + textB + posfix[i].type + textC;
+    txtShnt = txtShnt + txtA + posfix[i].token + txtB + posfix[i].type + txtC;
   }
-  document.getElementById("shunting").innerHTML = txtShunting + '</div></div>';
+  document.getElementById("shunting").innerHTML = txtShnt + '</div></div>';
 }
 
 function displayTruthTable(arr) {

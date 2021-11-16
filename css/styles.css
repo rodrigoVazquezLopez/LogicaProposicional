@@ -5,7 +5,6 @@ body {
 
 header {
   padding: 3.75rem;
-  outline: 1px solid red;
   text-align: center;
   background-color: #293037;
   color: #fff;
@@ -152,6 +151,32 @@ p {
   font-variant: small-caps;
 }
 
+.iteration-container {
+  width: 90%;
+  margin: 30px 0 20px 0;
+}
+
+.iteration-container-internal {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.iteration-title {
+  padding: 15px;
+  background-color: cadetblue;
+  border-radius: 5px 30px 0 30px;
+  width: 150px; color: white;
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+.iteration-border {
+  border-bottom: 6px solid cadetblue;
+  width: 100%;
+  height: 46px;
+}
+
 .partial-container {
   width: 45%;
   border: 1px solid #000;
@@ -185,12 +210,19 @@ p {
   padding: 10px 5px;
 }
 
-.posfix-subtitle {
+.output-subtitle {
+  background-color: #575757;
+  color: #fff;
+  margin: 0;
+  padding: 0.625rem;
+  font-size:1.5rem;
+}
+
+.stack-subtitle {
   background-color: #D7D7D7;
   margin: 0;
   padding: 0.625rem;
   font-size:1.5rem;
-  /*height: 2.75rem;*/
 }
 
 table, th, td {
@@ -202,4 +234,18 @@ table, th, td {
 
 #inputs th, #inputs td {
 
+}
+
+@media screen and (max-width: 1000px) {
+  .calculator-container, .calculator-instructions-container {
+    width: 100%;
+  }
+
+  .calculator-section {
+    flex-wrap: wrap;
+  }
+
+  .partial-container {
+    width: 95%;
+  }
 }
