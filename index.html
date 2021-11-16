@@ -53,7 +53,7 @@
 
       <div class="calculator-instructions-container">
         <h2>Instrucciones</h2>
-        <p>La calculadora esta diseñada para realizar el cálculo de de proposiciones lógicas utilizando tablas de verdad. Las operaciones lógicas que se pueden realizar se muestran en la siguiente tabla:</p>
+        <p>La calculadora está diseñada para realizar el cálculo de de proposiciones lógicas utilizando tablas de verdad. Las operaciones lógicas que se pueden realizar se muestran en la siguiente tabla:</p>
         <table class="info-operations-table">
           <tr>
             <th>Prioridad</th>
@@ -91,9 +91,9 @@
             <td>Disyunción exclusiva: A&#x2295;B</td>
           </tr>
         </table>
-        <p>Se pueden utilizar paréntesis para agrupar las operaciones, sin embargo, en caso no hacerlo el orden de evaluación de los operadores se realiza con base en valor definido en la columna <strong>prioridad</strong> de la tabla anterior, siendo la negación la operación con mayor prioridad y la disyunción exclusiva la operación con menor prioridad.</p>
-        <p>Para ingresar las proposiciones utilice los botones con la letras <strong>A - I</strong>.</p>   
-        <p>En caso que necesite corregir la expresión ingreada utilice el botón <strong>DEL</strong> para borrar los caracteres que considere necesarios.</p>
+        <p>Se pueden utilizar paréntesis para agrupar las operaciones, sin embargo, en caso de no hacerlo el orden de evaluación de los operadores se realiza con base en valor definido en la columna <strong>prioridad</strong> de la tabla anterior, siendo la negación la operación con mayor prioridad y la disyunción exclusiva de menor prioridad.</p>
+        <p>Para ingresar las proposiciones utilice los botones con las letras <strong>A - I</strong>.</p>   
+        <p>En caso que necesite corregir la expresión ingresada utilice el botón <strong>DEL</strong> para borrar los caracteres que considere necesarios.</p>
         <p>Para borrar por completo el contenido pulse el botón <strong>AC</strong>.</p>
         <p>Para visualizar el resultado pulse el botón <strong>RES</strong>.</p>
       </div>
@@ -103,7 +103,7 @@
         <h2>Tokenizer</h2>
         <p class="info-paragraph">La expresión ingresada se analiza con la finalidad de identificar los distintos elementos que la componen: proposiciones, operaciones y paréntesis. Como resultado del análisis, la expresión se separa en tokens que se almacenan de manera independiente junto con una etiqueta que identifica el tipo.</p>
         <p class="info-paragraph">La cadena analizada se compone de los siguientes tokens:</p>  
-        <div class="flex-container" style="outline: 1px solid red" id="tokenizer"></div>
+        <div class="flex-container" id="tokenizer"></div>
       </div>
       <div>
         <h2>Analizador sintáctico</h2>
@@ -111,9 +111,9 @@
       </div>
       <div>
         <h2>Shunting Yard Algorithm</h2>
-        <p class="info-paragraph">Una vez que se verificó que la cadena de entrada es sintácticamente correcta, el siguiente paso pepararla para evaluar la expresión. Por ello, la expresión originalmente ingresada en notación infija se debe convertir a notación prefija (también conocida como notación polaca inversa) con la finalidad de facilitar el cómputo.</p>
+        <p class="info-paragraph">Una vez que se verificó que la cadena de entrada es sintácticamente correcta, el siguiente paso prepararla para evaluar la expresión. Por ello, la expresión originalmente ingresada en notación infija se debe convertir a notación prefija (también conocida como notación polaca inversa) con la finalidad de facilitar el cómputo.</p>
         <p class="info-paragraph">Una de las formas de realizar la conversión infijo a posfijo es utilizar el algoritmo Shunting Yard el cuál es un algoritmo basado en el uso de una pila (stack). </p>
-        <p class="info-paragraph">A continuación se muestra el proceso de evaluaación del algoritmo con la cadena de entrada mostrando la cadena parcial de salida y el contenido de la pila de cada iteración.</p>
+        <p class="info-paragraph">A continuación se muestra el proceso de evaluación del algoritmo con la cadena de entrada mostrando la cadena parcial de salida y el contenido de la pila de cada iteración.</p>
         <div class="flex-container" id="partial_results"></div>
         <div class="flex-container" id="shunting"></div>
       </div>
