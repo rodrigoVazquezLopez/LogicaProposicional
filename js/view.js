@@ -70,6 +70,9 @@ function btnFunDEL() {
   }
 }
 
+/**
+ * clear input box
+ */
 function btnFunAC() {
   const entrada = document.getElementById("entrada");
   entrada.textContent = "0";
@@ -91,7 +94,7 @@ function showResults() {
 
 /**
  * display contents of tokenized input
- * @param {array} arr - array of tokens
+ * @param {array} arr - an array returned by tokenizer() function
  */
 function displayTokens(arr) {
   let textA = '<div class="card-token-element"><p class="token-data">';
@@ -105,8 +108,8 @@ function displayTokens(arr) {
 }
 
 /**
- *display contents 
- * @param {array} arr - an array composed by array of tokens in posfix notation (index 0) and array composed by 
+ *display contents of posfix and shunting yard algorithm
+ * @param {array} arr - an array returned by shuntingYard() function 
  */
 function displayPosfix(arr) {
   let posfix = arr[0];
@@ -144,8 +147,8 @@ function displayPosfix(arr) {
 }
 
 /**
- * 
- * @param {array} arr 
+ * displays resulted truth table
+ * @param {array} arr - array returned by evaluateExpression() function
  */
 function displayTruthTable(arr) {
   let inputLabels = arr[0];
