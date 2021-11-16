@@ -127,7 +127,7 @@ function displayPosfix(arr) {
   }
   document.getElementById("partial_results").innerHTML = txt;
 
-  let txtShnt = itTxtA + "Result" itTxtB;
+  let txtShnt = itTxtA + "Result" + itTxtB;
   txtShnt = txtShnt + '<div class="posfix-output-container"><p class="output-subtitle">Output</p><div class="posfix-partial-values-container">';
   for (let i = 0; i < posfix.length; i++) {
     txtShnt = txtShnt + txtA + posfix[i].token + txtB + posfix[i].type + txtC;
