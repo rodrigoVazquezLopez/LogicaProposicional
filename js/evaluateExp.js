@@ -349,7 +349,6 @@ function evaluateExpression(posfix) {
       let t = new Token(op1.token + token.token + op2.token, "PARTIALRES");
       outputLabels.push(t.token);
       s.push(t);
-      console.log(s);
       operatorIndex++;
     }
   }

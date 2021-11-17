@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Calculadora de Lógica Proposicional</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu|Lora" />
     <script src="js/constants.js"></script>
     <script src="js/tokenizer.js"></script>
@@ -16,7 +16,7 @@
   <body>
     <header>
       <h1>Calculadora de Lógica Proposicional</h1>
-      <p>Calculadora didáctica de operaciones lógicas open source desarrollada enteramente en javascript. Auxiliar en cursos de lógica matemática, programación y teoría de la computación</p>
+      <p>Calculadora didáctica de operaciones lógicas open source desarrollada enteramente en javascript. Auxiliar en cursos de lógica matemática, programación y teoría de la computación.</p>
       <a class="code-button" href="https://github.com/rodrigoVazquezLopez/LogicaProposicional/tree/main/src" target="_blank">Código Fuente</a>
     </header>
 
@@ -54,7 +54,11 @@
 
       <div class="calculator-section-row">
         <h2>Instrucciones</h2>
-        <p>La calculadora está diseñada para realizar el cálculo de de proposiciones lógicas utilizando tablas de verdad. Las operaciones lógicas que se pueden realizar se muestran en la siguiente tabla:</p>
+        <p>
+          La aplicación está diseñada para calcular de proposiciones lógicas utilizando tablas de verdad y para mostrar los algoritmos utilizados durante el proceso de cómputo. Es ideal para usarse como recursos intecativo en cursos de
+          lógica matemática, teoría de la computación, compiladores y programación.
+        </p>
+        <p>Las operaciones lógicas que se pueden realizar se resumen en la siguiente tabla:</p>
         <table class="info-operations-table">
           <tr>
             <th>Prioridad</th>
@@ -92,8 +96,12 @@
             <td>Disyunción exclusiva: A&#x2295;B</td>
           </tr>
         </table>
-        <p>Se pueden utilizar paréntesis para agrupar las operaciones, sin embargo, en caso de no hacerlo el orden de evaluación de los operadores se realiza con base en valor definido en la columna <strong>prioridad</strong> de la tabla anterior, siendo la negación la operación con mayor prioridad y la disyunción exclusiva de menor prioridad.</p>
-        <p>Para ingresar las proposiciones utilice los botones con las letras <strong>A - I</strong>.</p>   
+        <p>
+          <strong>Nota:</strong> se pueden utilizar paréntesis para agrupar las operaciones, sin embargo, en caso de no hacerlo el orden de evaluación de los operadores se realiza con base en el valor definido en la columna
+          <strong>prioridad</strong> de la tabla anterior, siendo la negación la operación con mayor prioridad y la disyunción exclusiva de menor prioridad.
+        </p>
+        <p>Pulse los botones de la calculadora para ingresar los valores.</p>
+        <p>Para ingresar las proposiciones utilice los botones con las letras <strong>A - I</strong>.</p>
         <p>En caso que necesite corregir la expresión ingresada utilice el botón <strong>DEL</strong> para borrar los caracteres que considere necesarios.</p>
         <p>Para borrar por completo el contenido pulse el botón <strong>AC</strong>.</p>
         <p>Para visualizar el resultado pulse el botón <strong>RES</strong>.</p>
@@ -102,8 +110,11 @@
     <section>
       <div>
         <h2>Tokenizer</h2>
-        <p class="info-paragraph">La expresión ingresada se analiza con la finalidad de identificar los distintos elementos que la componen: proposiciones, operaciones y paréntesis. Como resultado del análisis, la expresión se separa en tokens que se almacenan de manera independiente junto con una etiqueta que identifica el tipo.</p>
-        <p class="info-paragraph">La cadena analizada se compone de los siguientes tokens:</p>  
+        <p class="info-paragraph">
+          Una vez ingresada la expresión a evaluar, el primer paso es analizar su contenido con la finalidad de identificar los distintos elementos que la componen: proposiciones, operaciones y paréntesis. Dicho proceso es realizado por un
+          programa conocido como 'Tokenizer' o 'Lexer'. Como resultado del análisis, la expresión se separa en tokens que se almacenan de manera independiente junto con una etiqueta que identifica el tipo.
+        </p>
+        <p class="info-paragraph">La expresión ingresada a la calculadora se compone de los siguientes tokens:</p>
         <div class="flex-container" id="tokenizer"></div>
       </div>
       <div>
@@ -112,15 +123,29 @@
       </div>
       <div>
         <h2>Shunting Yard Algorithm</h2>
-        <p class="info-paragraph">Una vez que se verificó que la cadena de entrada es sintácticamente correcta, el siguiente paso prepararla para evaluar la expresión. Por ello, la expresión originalmente ingresada en notación infija se debe convertir a notación prefija (también conocida como notación polaca inversa) con la finalidad de facilitar el cómputo.</p>
-        <p class="info-paragraph">Una de las formas de realizar la conversión infijo a posfijo es utilizar el algoritmo Shunting Yard el cuál es un algoritmo basado en el uso de una pila (stack). </p>
-        <p class="info-paragraph">A continuación se muestra el proceso de evaluación del algoritmo con la cadena de entrada mostrando la cadena parcial de salida y el contenido de la pila de cada iteración.</p>
+        <p class="info-paragraph">
+          Una vez que se verificó que la expresión a evaluar es sintácticamente correcta, el siguiente paso prepararla para calcular el resultado. Por ello, la expresión ingresada requiere pasar por un proceso de conversión de notación
+          infija (notación tipo a+b) a notación prefija (también conocida como notación polaca inversa y de tipo ab+) con la finalidad de facilitar el proceso de cómputo.
+        </p>
+        <p class="info-paragraph">
+          Una de las formas de realizar la conversión infijo a posfijo es utilizar el algoritmo Shunting Yard el cuál es un algoritmo inspirado en el funcionamiento de los patios de clasificación de los ferrocarriles y cuya implementación
+          requiere del uso de una estructura de datos tipo pila (stack). Por lo anterior, un programa que implementa el algoritmo antes mencionado se encarga de realizar el proceso de conversión.
+        </p>
+        <p class="info-paragraph">
+          A continuación se muestra el resultado del programa mostrando el proceso de análisis de la expresión el cual implica el caracter a analizar, la expresion de salida y el contenido de la pila de cada iteración realiada.
+        </p>
         <div class="flex-container" id="partial_results"></div>
         <div class="flex-container" id="shunting"></div>
       </div>
       <div>
         <h2>Tabla de Verdad</h2>
-        <p class="info-paragraph">Finalmente, se procede a evaluar la expresión:</p>
+        <p class="info-paragraph">
+          Finalmente, con la expresión ordenada en notación polaca inversa (RPN o Reverse Polish Notation) se puede realizar el cómputo para obtener el resultado. En esta etapa, otro programa se encarga de analizar la expresión para conocer
+          el número de proposiciones de entrada y de operaciones a realizar para generar la tabla con el tamaño necesario para almacenar los valores de entradas y salida. Con la tabla anterior y con un algoritmo basado en el utilizado por
+          las calculadoras RPN se generan las entradas necesarias, se resuelve la expresión y se obtienen las salidas.
+        </p>
+        <p class="info-paragraph">La tabla de verdad para la expresión:</p>
+        <p id="initial_expression"></p>
         <div class="flex-container">
           <table class="text-center" id="inputs"></table>
           <table class="text-center" id="outputs"></table>

@@ -34,13 +34,13 @@ function shuntingYard(tokens) {
     } else {
       return "error";
     }
-    let step = [Array.from(posfix), Array.from(s.items)];
+    let step = [Array.from(posfix), Array.from(s.items), index];
     steps.push(step);
     index++;
   }
   while (!s.isEmpty()) {
     posfix.push(s.pop());
-    let step = [Array.from(posfix), Array.from(s.items)];
+    let step = [Array.from(posfix), Array.from(s.items), index];
     steps.push(step);
   }
   return [posfix, steps];

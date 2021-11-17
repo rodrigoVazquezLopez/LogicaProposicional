@@ -41,6 +41,15 @@ p {
   margin-bottom: 1.6rem;
 }
 
+table,
+th,
+td {
+  border-collapse: collapse;
+  padding: 0.9375rem;
+  border: 1px solid black;
+  font-size: 1.125rem;
+}
+
 .code-button {
   display: inline-block;
   text-align: center;
@@ -97,6 +106,7 @@ p {
   padding: 10px;
   border-radius: 0.3125rem;
   font-weight: bold;
+  word-break: break-all;
 }
 
 .btn-calculator {
@@ -162,6 +172,10 @@ p {
   background-color: #d66012;
 }
 
+.card-token-element:hover .selected-token-data, .card-token-element:hover .selected-token-type-data, .card-token-element:hover .triangle-up {
+  opacity: 0.5;
+}
+
 .token-data {
   margin: 0;
   font-size: 2rem;
@@ -178,6 +192,33 @@ p {
   border-radius: 0 0 10px 10px;
   font-size: 0.75rem;
   font-variant: small-caps;
+}
+
+.selected-token-data {
+  margin: 0;
+  font-size: 2rem;
+  padding: 1.125rem;
+  border: 2px solid rgb(153, 4, 4);
+  border-radius: 10px 10px 0 0;
+}
+
+.selected-token-type-data {
+  margin: 0;
+  /*padding: 0.3125rem 0;*/
+  background-color: rgb(153, 4, 4);
+  color: #fff;
+  border-radius: 0 0 10px 10px;
+  font-size: 0.75rem;
+  font-variant: small-caps;
+}
+
+.triangle-up {
+	width: 0;
+	height: 0;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 20px solid #555;
+  margin: auto;
 }
 
 .stack-cell {
@@ -213,9 +254,8 @@ p {
   text-align: center;
 }
 
-
 .iteration-container {
-  width: 90%;
+  width: 75%;
   margin: 30px 0 20px 0;
 }
 
@@ -228,10 +268,9 @@ p {
   padding: 0.9375rem;
   background-color: cadetblue;
   border-radius: 5px 30px 0 30px;
-  width: 9.375rem;
+  width: 11.25rem;
   color: white;
   text-align: center;
-  font-family: Helvetica, sans-serif;
   font-weight: bold;
 }
 
@@ -242,7 +281,7 @@ p {
 }
 
 .partial-container {
-  width: 45%;
+  width: 75%;
   border: 1px solid #000;
   margin: 0.625rem;
   min-height: 9.875rem;
@@ -262,7 +301,7 @@ p {
 }
 
 .posfix-output-container {
-  width: 91%;
+  width: 75%;
   border: 1px solid #000;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -272,6 +311,14 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   padding: 0.625rem 0.3125rem;
+}
+
+.input-subtitle {
+  background-color: #d66012;
+  color: #fff;
+  margin: 0;
+  padding: 0.625rem;
+  font-size: 1.5rem;
 }
 
 .output-subtitle {
@@ -289,13 +336,10 @@ p {
   font-size: 1.5rem;
 }
 
-table,
-th,
-td {
-  border-collapse: collapse;
-  padding: 0.9375rem;
-  border: 1px solid black;
-  font-size: 1.125rem;
+#initial_expression {
+  text-align: center;
+  font-size: 1.75rem;
+  word-break: break-all;
 }
 
 #inputs th,

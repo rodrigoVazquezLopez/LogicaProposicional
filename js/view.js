@@ -83,11 +83,12 @@ function btnFunAC() {
  */
 function showResults() {
   const entrada = document.getElementById("entrada");
+  document.getElementById("initial_expression").innerHTML = entrada.textContent;
   let tokens = tokenizer(entrada.textContent);
   displayTokens(tokens);
   // aqui va el analizador sintactico
   let posfix = shuntingYard(tokens);
-  displayPosfix(posfix);
+  displayPosfix(posfix, tokens);
   let results = evaluateExpression(posfix[0]);
   displayTruthTable(results);
 }
@@ -111,34 +112,52 @@ function displayTokens(arr) {
  *display contents of posfix and shunting yard algorithm
  * @param {array} arr - an array returned by shuntingYard() function 
  */
-function displayPosfix(arr) {
+function displayPosfix(arr, tokens) {
   let posfix = arr[0];
   let steps = arr[1];
 
   let itTxtA = '<div class="iteration-container"><div class="iteration-container-internal"><div class="iteration-title">';
   let itTxtB = '</div><div class="iteration-border"></div></div></div>';
 
-  let txtA = '<div class="card-token-element"><p class="token-data">';
-  let txtB = '</p><p class="token-type-data">';
-  let txtC = "</p></div>";
+  let inTxtA = '<div class="card-token-element"><p class="selected-token-data">';
+  let inTxtB = '</p><p class="selected-token-type-data">';
+  let inTxtC = '</p><div class="triangle-up"></div></div>';
+
+  let outTxtA = '<div class="card-token-element"><p class="token-data">';
+  let outTxtB = '</p><p class="token-type-data">';
+  let outTxtC = '</p></div>';
 
   let staTxtA = '<div class="stack-cell"><div class="card-stack-element"><p class="stack-data">';
   let staTxtB = '</p><p class="stack-type-data">';
   let staTxtC = '</p></div><p class="stack-index">';
   let staTxtD = '</p></div>';
+  
   let txt = "";
 
   for (let i = 0; i < steps.length; i++) {
     txt = txt + itTxtA + "Iteration " + (i + 1) + itTxtB;
-    txt = txt + '<div class="partial-container"><p class="output-subtitle">Output</p><div class="posfix-partial-values-container">';
-    for (let j = 0; j < steps[i][0].length; j++) {
-      txt = txt + txtA + steps[i][0][j].token + txtB + steps[i][0][j].type + txtC;
+
+    // shows input
+    txt = txt + '<div class="partial-container"><p class="input-subtitle">Input</p><div class="posfix-partial-values-container">';
+    for(let j=0; j<tokens.length;j++) {
+      if (j == steps[i][2]) {
+        txt = txt + inTxtA + tokens[j].token + inTxtB + tokens[j].type + inTxtC;
+      } else {
+        txt = txt + outTxtA + tokens[j].token + outTxtB + tokens[j].type + outTxtC;
+      }    
     }
 
+    // shows stack
     let k = 0
     txt = txt + '</div></div><div class="partial-container"><p class="stack-subtitle">Stack</p><div class="stack-values-container">';
     for (let j = steps[i][1].length - 1; j >= 0; j--) {
       txt = txt + staTxtA + steps[i][1][j].token + staTxtB + steps[i][1][j].type + staTxtC + k++ + staTxtD;
+    }
+
+    // shows partial output
+    txt = txt + '</div></div><div class="partial-container"><p class="output-subtitle">Output</p><div class="posfix-partial-values-container">';
+    for (let j = 0; j < steps[i][0].length; j++) {
+      txt = txt + outTxtA + steps[i][0][j].token + outTxtB + steps[i][0][j].type + outTxtC;
     }
     txt = txt + "</div></div>";
   }
@@ -147,7 +166,7 @@ function displayPosfix(arr) {
   let txtShnt = itTxtA + "Result" + itTxtB;
   txtShnt = txtShnt + '<div class="posfix-output-container"><p class="output-subtitle">Output</p><div class="posfix-partial-values-container">';
   for (let i = 0; i < posfix.length; i++) {
-    txtShnt = txtShnt + txtA + posfix[i].token + txtB + posfix[i].type + txtC;
+    txtShnt = txtShnt + outTxtA + posfix[i].token + outTxtB + posfix[i].type + outTxtC;
   }
   document.getElementById("shunting").innerHTML = txtShnt + "</div></div>";
 }
