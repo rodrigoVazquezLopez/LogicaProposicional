@@ -125,6 +125,10 @@ p {
   background-color: #d6c1d6;
 }
 
+.btn-operation-color {
+  background-color: #f0f0f0;
+}
+
 .info-paragraph {
   max-width: 1100px;
   margin: auto;
