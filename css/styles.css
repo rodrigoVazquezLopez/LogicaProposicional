@@ -180,6 +180,40 @@ p {
   font-variant: small-caps;
 }
 
+.stack-cell {
+  width: 4.6875rem;
+}
+
+.card-stack-element {
+  width: 4.6875rem;
+  text-align: center;
+  border: 2px solid #fff;
+  padding: 2px;
+  background-color: rgb(96, 154, 161);
+  color: #fff;
+}
+
+.card-stack-element:hover {
+  opacity: 0.75;
+}
+
+.stack-data {
+  margin: 0;
+  padding: 5px;
+  font-size: 2rem;
+}
+
+.stack-type-data {
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+.stack-index {
+  margin: 0;
+  text-align: center;
+}
+
+
 .iteration-container {
   width: 90%;
   margin: 30px 0 20px 0;

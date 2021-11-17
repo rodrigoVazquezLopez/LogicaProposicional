@@ -121,6 +121,11 @@ function displayPosfix(arr) {
   let txtA = '<div class="card-token-element"><p class="token-data">';
   let txtB = '</p><p class="token-type-data">';
   let txtC = "</p></div>";
+
+  let staTxtA = '<div class="stack-cell"><div class="card-stack-element"><p class="stack-data">';
+  let staTxtB = '</p><p class="stack-type-data">';
+  let staTxtC = '</p></div><p class="stack-index">';
+  let staTxtD = '</p></div>';
   let txt = "";
 
   for (let i = 0; i < steps.length; i++) {
@@ -130,9 +135,10 @@ function displayPosfix(arr) {
       txt = txt + txtA + steps[i][0][j].token + txtB + steps[i][0][j].type + txtC;
     }
 
+    let k = 0
     txt = txt + '</div></div><div class="partial-container"><p class="stack-subtitle">Stack</p><div class="stack-values-container">';
     for (let j = steps[i][1].length - 1; j >= 0; j--) {
-      txt = txt + txtA + steps[i][1][j].token + txtB + steps[i][1][j].type + txtC;
+      txt = txt + staTxtA + steps[i][1][j].token + staTxtB + steps[i][1][j].type + staTxtC + k++ + staTxtD;
     }
     txt = txt + "</div></div>";
   }
