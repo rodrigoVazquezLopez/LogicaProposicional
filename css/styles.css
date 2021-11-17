@@ -172,7 +172,9 @@ td {
   background-color: #d66012;
 }
 
-.card-token-element:hover .selected-token-data, .card-token-element:hover .selected-token-type-data, .card-token-element:hover .triangle-up {
+.card-token-element:hover .selected-token-data,
+.card-token-element:hover .selected-token-type-data,
+.card-token-element:hover .triangle-up {
   opacity: 0.5;
 }
 
@@ -213,11 +215,11 @@ td {
 }
 
 .triangle-up {
-	width: 0;
-	height: 0;
-	border-left: 20px solid transparent;
-	border-right: 20px solid transparent;
-	border-bottom: 20px solid #555;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid #555;
   margin: auto;
 }
 
@@ -342,8 +344,22 @@ td {
   word-break: break-all;
 }
 
-#inputs th,
-#inputs td {
+#inputs th {
+  background-color: rgb(96, 154, 161);
+  color: #fff;
+}
+
+#outputs th {
+  background-color: rgb(214, 96, 18);
+  color: #fff;
+}
+
+.false-input-cell {
+  background-color: rgba(96, 154, 161, 0.3);
+}
+
+.false-output-cell {
+  background-color: rgba(214, 96, 18, 0.3);
 }
 
 @media screen and (max-width: 992px) {
@@ -353,7 +369,7 @@ td {
 
   .calculator-section-row {
     width: 100%;
-    flex: 100%
+    flex: 100%;
   }
 
   .partial-container {

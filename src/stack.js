@@ -1,4 +1,18 @@
 /**
+ * @fileoverview Stack
+ *
+ * @version 1.0
+ *
+ * @author Rodrigo Vázquez-López <rodrigo_em2@hotmail.com>
+ * @copyright Rodrigo Vázquez-López
+ *
+ * History
+ * v1.0 – Versión inicial
+ * ----
+ * Clase de apoyo que implemeenta una TDA Stack en JS.
+*/
+
+/**
  * Class representing a basic stack
  */
 class Stack {
@@ -38,7 +52,7 @@ class Stack {
 
   /**
    * check if stack is empty
-   * @returns {boolean} 
+   * @returns {boolean}
    */
   isEmpty() {
     return this.items.length == 0;

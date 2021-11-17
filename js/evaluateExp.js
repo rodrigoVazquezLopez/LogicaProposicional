@@ -1,4 +1,18 @@
 /**
+ * @fileoverview EvaluateExpression
+ *
+ * @version 1.0
+ *
+ * @author Rodrigo Vázquez-López <rodrigo_em2@hotmail.com>
+ * @copyright Rodrigo Vázquez-López
+ *
+ * History
+ * v1.0 – Versión inicial
+ * ----
+ * Módulo de la apliación JSLógicaProposicional
+*/
+
+/**
  * gets the number of prepositions in array of tokenized string
  * @param {array} tokens - array of tokens objects
  * @returns {number} number of prepositions
@@ -34,7 +48,7 @@ function getNumberOfOperations(tokens) {
 
 /**
  * generate truth table's inputs bidimensional array
- * @param {number} numOfPrepositions - number of prepositions 
+ * @param {number} numOfPrepositions - number of prepositions
  * @returns {array} a table of inputs
  */
 function generateInputTable(numOfPrepositions) {
@@ -61,7 +75,7 @@ function generateOutputTable(numOfPrepositions, numOfOperations) {
   let table = [];
 
   for (let i = 0; i < max; i++) {
-    let row = [];;
+    let row = [];
     for (let j = 0; j < numOfOperations; j++) {
       row.push("0");
     }
@@ -174,8 +188,8 @@ function exclusiveDisjunction(propA, propB) {
 
 /**
  * evaluate an expresion and generate its truth table
- * @param {array} posfix - array of tokenized string in posfix notation 
- * @returns {array} array composed by input labels,output labels, input data and output data 
+ * @param {array} posfix - array of tokenized string in posfix notation
+ * @returns {array} array composed by input labels,output labels, input data and output data
  */
 function evaluateExpression(posfix) {
   let numPrepositions = getNumberOfPrepositions(posfix);
@@ -185,7 +199,7 @@ function evaluateExpression(posfix) {
   let outputTable = generateOutputTable(numPrepositions, numOperations);
 
   let s = new Stack();
-  
+
   let operatorIndex = 0;
   let searchIndexOp1 = 0;
   let searchIndexOp2 = 0;

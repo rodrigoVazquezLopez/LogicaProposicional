@@ -1,4 +1,18 @@
 /**
+ * @fileoverview Tokenizer
+ *
+ * @version 1.0
+ *
+ * @author Rodrigo Vázquez-López <rodrigo_em2@hotmail.com>
+ * @copyright Rodrigo Vázquez-López
+ *
+ * History
+ * v1.0 – Versión inicial
+ * ----
+ * Módulo de la apliación JSLógicaProposicional.
+*/
+
+/**
  * Class representing a Token
  */
 class Token {
@@ -67,7 +81,7 @@ function isParenthesis(char) {
 }
 
 /**
- * create an array of tokens from a 
+ * create an array of tokens from a
  * @param {string} str - an input string to tokenize
  * @returns {Array} array of Token objects
  */

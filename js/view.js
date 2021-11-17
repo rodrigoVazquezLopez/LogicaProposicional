@@ -1,4 +1,18 @@
 /**
+ * @fileoverview view.js contiene las definiciones de las vistas de la UI
+ *
+ * @version 1.0
+ *
+ * @author Rodrigo Vázquez-López <rodrigo_em2@hotmail.com>
+ * @copyright Rodrigo Vázquez-López
+ *
+ * History
+ * v1.0 – Versión inicial
+ * ----
+ * Módulo de enlace entre apliación JSLógicaProposicional y la UI
+*/
+
+/**
  * write a proposition character on input box.
  * @param {string} char - a character between A-I
  */
@@ -110,7 +124,7 @@ function displayTokens(arr) {
 
 /**
  *display contents of posfix and shunting yard algorithm
- * @param {array} arr - an array returned by shuntingYard() function 
+ * @param {array} arr - an array returned by shuntingYard() function
  */
 function displayPosfix(arr, tokens) {
   let posfix = arr[0];
@@ -125,13 +139,13 @@ function displayPosfix(arr, tokens) {
 
   let outTxtA = '<div class="card-token-element"><p class="token-data">';
   let outTxtB = '</p><p class="token-type-data">';
-  let outTxtC = '</p></div>';
+  let outTxtC = "</p></div>";
 
   let staTxtA = '<div class="stack-cell"><div class="card-stack-element"><p class="stack-data">';
   let staTxtB = '</p><p class="stack-type-data">';
   let staTxtC = '</p></div><p class="stack-index">';
-  let staTxtD = '</p></div>';
-  
+  let staTxtD = "</p></div>";
+
   let txt = "";
 
   for (let i = 0; i < steps.length; i++) {
@@ -139,16 +153,16 @@ function displayPosfix(arr, tokens) {
 
     // shows input
     txt = txt + '<div class="partial-container"><p class="input-subtitle">Input</p><div class="posfix-partial-values-container">';
-    for(let j=0; j<tokens.length;j++) {
+    for (let j = 0; j < tokens.length; j++) {
       if (j == steps[i][2]) {
         txt = txt + inTxtA + tokens[j].token + inTxtB + tokens[j].type + inTxtC;
       } else {
         txt = txt + outTxtA + tokens[j].token + outTxtB + tokens[j].type + outTxtC;
-      }    
+      }
     }
 
     // shows stack
-    let k = 0
+    let k = 0;
     txt = txt + '</div></div><div class="partial-container"><p class="stack-subtitle">Stack</p><div class="stack-values-container">';
     for (let j = steps[i][1].length - 1; j >= 0; j--) {
       txt = txt + staTxtA + steps[i][1][j].token + staTxtB + steps[i][1][j].type + staTxtC + k++ + staTxtD;
@@ -189,7 +203,11 @@ function displayTruthTable(arr) {
   for (let i = 0; i < inputTable.length; i++) {
     content = content + "<tr>";
     for (let j = 0; j < inputTable[i].length; j++) {
-      content = content + "<td>" + inputTable[i][j] + "</td>";
+      if (inputTable[i][j] == "1") {
+        content = content + '<td class="false-input-cell">' + inputTable[i][j] + "</td>";
+      } else {
+        content = content + "<td>" + inputTable[i][j] + "</td>";
+      }
     }
     content = content + "</tr>";
   }
@@ -203,7 +221,11 @@ function displayTruthTable(arr) {
   for (let i = 0; i < outputTable.length; i++) {
     content = content + "<tr>";
     for (let j = 0; j < outputTable[i].length; j++) {
-      content = content + "<td>" + outputTable[i][j] + "</td>";
+      if (outputTable[i][j] == "1") {
+        content = content + '<td class="false-output-cell">' + outputTable[i][j] + "</td>";
+      } else {
+        content = content + "<td>" + outputTable[i][j] + "</td>";
+      }
     }
     content = content + "</tr>";
   }

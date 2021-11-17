@@ -1,7 +1,22 @@
 /**
+ * @fileoverview ShuntingYard
+ *
+ * @version 1.1
+ *
+ * @author Rodrigo Vázquez-López <rodrigo_em2@hotmail.com>
+ * @copyright Rodrigo Vázquez-López
+ *
+ * History
+ * v1.1 - Se agrego un parametro en el arreglo de retorno. La función devuelve el índice del caracter analizado además del estado de salida y pila. 
+ * v1.0 – Versión inicial
+ * ----
+ * Módulo de la apliación JSLógicaProposicional
+ */
+
+/**
  * implements shunting yard element to convert from infix to posfix notation
  * @param {array} tokens - an array of Tokens objects
- * @returns {array} returns an array composed by array of Tokens objects in posfix notation and array composed by partial output and stack 
+ * @returns {array} returns an array composed by array of Tokens objects in posfix notation and array composed by partial output, stack and index of current analized character
  */
 function shuntingYard(tokens) {
   let posfix = [];
@@ -34,13 +49,13 @@ function shuntingYard(tokens) {
     } else {
       return "error";
     }
-    let step = [Array.from(posfix), Array.from(s.items)];
+    let step = [Array.from(posfix), Array.from(s.items), index];
     steps.push(step);
     index++;
   }
   while (!s.isEmpty()) {
     posfix.push(s.pop());
-    let step = [Array.from(posfix), Array.from(s.items)];
+    let step = [Array.from(posfix), Array.from(s.items), index];
     steps.push(step);
   }
   return [posfix, steps];
